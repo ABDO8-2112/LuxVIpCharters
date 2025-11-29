@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Now | Lux VIP Charters Perth</title>
+    <meta name="description"
+        content="Secure your luxury ride with Lux VIP Charters. Easy online booking for airport transfers, corporate travel, and events.">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Font Awesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <!-- Navigation -->
+    <header class="header">
+        <nav class="navbar">
+            <a href="index.html" class="logo">Lux VIP Charters <span class="text-gold">Perth</span></a>
+            <div class="nav-links">
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="dropdown">
+                    <a href="#" class="nav-link">Services <i class="fas fa-chevron-down"></i></a>
+                    <div class="dropdown-content">
+                        <a href="corporate.html">Corporate Transfers</a>
+                        <a href="airport.html">Airport Transfers</a>
+                        <a href="vip.html">V-VIP / Celebrity</a>
+                        <a href="wedding.html">Weddings</a>
+                        <a href="tours.html">Wine Tours</a>
+                        <a href="golf.html">Golf Tours</a>
+                        <a href="terms.html">T&Cs</a>
+                    </div>
+                </div>
+                <a href="fleet.html" class="nav-link">Fleet</a>
+                <a href="about.html" class="nav-link">About</a>
+                <a href="contact.html" class="nav-link">Contact</a>
+                <a href="booking.html" class="btn-gold nav-btn active">Book Now</a>
+            </div>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Page Header -->
+    <section class="page-header"
+        style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/desktop/Lux_Car_Perth_Hire_(10).jpg') center/cover;">
+        <h1>Book Your Luxury Ride</h1>
+        <p>Reserve Your Premium Chauffeur Service</p>
+    </section>
+
+    <!-- Booking Form Section -->
+    <section class="booking-page">
+        <div class="container">
+            <div class="booking-form-container"
+                style="max-width: 800px; margin: 0 auto; background-color: var(--bg-card); padding: 3rem; border-radius: 10px; border: 1px solid rgba(212, 175, 55, 0.2);">
+                <form id="bookingForm">
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="name" style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Full
+                            Name</label>
+                        <input type="text" id="name" name="name" required
+                            style="width: 100%; padding: 12px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 5px;">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="email" style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Email
+                            Address</label>
+                        <input type="email" id="email" name="email" required
+                            style="width: 100%; padding: 12px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 5px;">
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="phone" style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Phone
+                            Number</label>
+                        <input type="tel" id="phone" name="phone" required
+                            style="width: 100%; padding: 12px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 5px;">
+                    </div>
+
+                    <div class="form-row"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div class="form-group">
+                            <label for="date"
+                                style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Date</label>
+                            <input type="date" id="date" name="date" required
+                                style="width: 100%; padding: 12px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 5px;">
+                        </div>
+                        <div class="form-group">
+                            <label for="time"
+                                style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Time</label>
+                            <input type="time" id="time" name="time" required
+                                style="width: 100%; padding: 12px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 5px;">
+                        </div>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                        <label for="service" style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Service
+                            Type</label>
+                        <select id="service" name="service"
+                            style="width: 100%; padding: 12px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 5px;">
+                            <option value="airport">Airport Transfer</option>
+                            <option value="corporate">Corporate Transfer</option>
+                            <option value="wedding">Wedding</option>
+                            <option value="vip">V-VIP / Celebrity</option>
+                            <option value="wine">Wine Tour</option>
+                            <option value="golf">Golf Tour</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 2rem;">
+                        <label for="message"
+                            style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Additional
+                            Details</label>
+                        <textarea id="message" name="message" rows="4"
+                            style="width: 100%; padding: 12px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 5px;"></textarea>
+                    </div>
+
+                    <button type="submit" class="btn-gold" style="width: 100%;">Submit Booking Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <h2>Lux VIP Charters <span class="text-gold">Perth</span></h2>
+                    <p>Premium chauffeur services in Perth, providing luxury, comfort, and reliability for all your
+                        travel needs.</p>
+                </div>
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="fleet.html">Fleet</a></li>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-social">
+                    <h3>Follow Us</h3>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Lux VIP Charters Perth. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        // Simple form handling for demo purposes
+        document.getElementById('bookingForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            alert('Thank you for your booking request! We will contact you shortly to confirm your reservation.');
+            e.target.reset();
+        });
+    </script>
+</body>
+
+</html>
