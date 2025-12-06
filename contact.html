@@ -59,7 +59,7 @@
 
     <!-- Page Header -->
     <section class="page-header"
-        style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/desktop/Lux_Car_Perth_Hire_(10).jpg') center/cover;">
+        style="background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/desktop/Lux_Car_Perth_Hire_(3).jpg') center/cover;">
         <h1>Contact Us</h1>
         <p>Get in Touch with Lux VIP Charters</p>
     </section>
@@ -176,7 +176,7 @@
     <script>
         document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            
+
             const formData = {
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
@@ -192,18 +192,18 @@
 
                 // Determine the base URL
                 let baseUrl = window.location.origin;
-                
+
                 // If opened via file://, use localhost:3000
                 if (baseUrl === 'null' || baseUrl.startsWith('file://') || baseUrl === '') {
                     baseUrl = 'http://localhost:3000';
                     console.warn('⚠️ Page opened via file://. Using http://localhost:3000');
                     console.warn('💡 Tip: Access the page via http://localhost:3000/contact.html for best results');
                 }
-                
+
                 const apiUrl = baseUrl + '/api/contact';
-                
+
                 console.log('Submitting to:', apiUrl);
-                
+
                 const response = await fetch(apiUrl, {
                     method: 'POST',
                     headers: {
