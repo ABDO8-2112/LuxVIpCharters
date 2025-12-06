@@ -4,9 +4,9 @@
     --bg-card: rgba(20, 20, 20, 0.6);
     --text-primary: #ffffff;
     --text-secondary: #a0a0a0;
-    --gold: #D4AF37;
-    --gold-light: #E6C785;
-    --gold-dark: #AA8C2C;
+    --gold: #ffc400;
+    --gold-light: #dca122;
+    --gold-dark: #d0a61a;
     --font-heading: 'Cinzel', serif;
     --font-body: 'Montserrat', sans-serif;
     --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
