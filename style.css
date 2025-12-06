@@ -13,6 +13,102 @@
     --glass: blur(10px);
 }
 
+/* ---- Layout ---- */
+.about-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 50px;
+    padding: 60px 0;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-img {
+    flex: 1;
+    text-align: center;
+}
+
+/* Smaller image for elegance */
+.about-img.small-img img {
+    width: 75%;
+    max-width: 320px;
+    border-radius: 10px;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Button under image */
+.about-img .img-btn {
+    display: inline-block;
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* ---- Luxury Typographic Feel ---- */
+.subtitle {
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+    opacity: 0.7;
+}
+
+.title {
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+/* ---- Animations ---- */
+.fade-in {
+    opacity: 0;
+    animation: fadeIn 1.2s ease forwards;
+}
+
+.fade-in-delayed {
+    opacity: 0;
+    animation: fadeIn 1.2s ease 0.4s forwards;
+}
+
+.slide-up {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 1s ease forwards;
+}
+
+.slide-up-delayed {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: slideUp 1s ease 0.4s forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ---- Responsive Two-Column ---- */
+@media (max-width: 900px) {
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 0;
+    }
+
+    .about-img.small-img img {
+        width: 85%;
+    }
+}
+
 /* Reset & Base */
 * {
     margin: 0;
@@ -1417,4 +1513,88 @@ section {
 .toast.error {
     background-color: #dc3545;
     /* red */
+}
+
+.team-member {
+    display: flex;
+    align-items: flex-start;
+    gap: 30px;
+    margin-top: 40px;
+    flex-wrap: wrap;
+}
+
+.team-img {
+    flex-shrink: 0;
+}
+
+.circle-img {
+    width: 120px;
+    /* smaller circle */
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid #d4af37;
+    /* subtle gold border for luxury look */
+}
+
+.team-info {
+    flex: 1;
+    min-width: 250px;
+}
+
+.team-info h3 {
+    margin-top: 0;
+    font-weight: 500;
+    font-size: 1.5rem;
+}
+
+.team-header h2 {
+    font-weight: 400;
+    margin-bottom: 10px;
+}
+
+.team-header p {
+    opacity: 0.7;
+}
+
+/* General luxury-themed headings */
+.about-text h2,
+.team-header h2 {
+    font-size: 2.5rem;
+    /* prominent luxury size */
+    font-weight: 400;
+    /* elegant, not too bold */
+    line-height: 1.2;
+    margin-bottom: 20px;
+    text-transform: none;
+    /* optional, can use uppercase if your theme does */
+    position: relative;
+    color: #fff;
+    /* adjust based on your theme background */
+}
+
+/* Add a subtle gold accent under heading */
+.about-text h2::after,
+.team-header h2::after {
+    content: "";
+    display: block;
+    width: 60px;
+    /* small underline length */
+    height: 3px;
+    /* underline thickness */
+    background-color: #d4af37;
+    /* gold color consistent with your theme */
+    margin-top: 10px;
+    border-radius: 2px;
+}
+
+/* Subtitle style if needed */
+.subtitle {
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.7);
+    /* slightly muted gold/white */
+    margin-bottom: 10px;
+    display: inline-block;
 }
