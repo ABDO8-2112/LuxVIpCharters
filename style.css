@@ -1,11 +1,11 @@
-/* Variables */
+﻿/* Variables */
 :root {
     --bg-dark: #050505;
     --bg-card: rgba(20, 20, 20, 0.6);
     --text-primary: #ffffff;
     --text-secondary: #a0a0a0;
     --gold: #D4AF37;
-    --gold-light: #F4D03F;
+    --gold-light: #E6C785;
     --gold-dark: #AA8C2C;
     --font-heading: 'Cinzel', serif;
     --font-body: 'Montserrat', sans-serif;
@@ -99,237 +99,213 @@ section {
     padding: 8rem 0;
 }
 
-/* Header - Luxury & Bold */
+/* Header & Navigation */
 .header {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
-    padding: 1.2rem 0;
     z-index: 1000;
-    transition: var(--transition);
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.9) 0%, rgba(5, 5, 5, 0.85) 100%);
-    border-bottom: 2px solid transparent;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.3);
+    transition: all 0.4s ease;
+    padding: 1rem 0;
 }
 
 .header.scrolled {
-    background: linear-gradient(180deg, rgba(0, 0, 0, 0.98) 0%, rgba(5, 5, 5, 0.95) 100%);
-    padding: 0.8rem 0;
-    border-bottom: 2px solid var(--gold);
-    box-shadow: 0 8px 40px rgba(212, 175, 55, 0.15);
+    background-color: rgba(5, 5, 5, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 0;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.5);
 }
 
 .navbar {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    max-width: 1400px;
-    margin: 0 auto;
-    padding: 0 3rem;
 }
 
 .logo {
     font-family: var(--font-heading);
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     font-weight: 700;
-    letter-spacing: 2px;
     color: var(--text-primary);
-    transition: var(--transition);
-    text-transform: uppercase;
-    text-shadow: 0 0 20px rgba(212, 175, 55, 0.3);
-}
-
-.logo .text-gold {
-    font-weight: 700;
-    text-shadow: 0 0 30px rgba(212, 175, 55, 0.6);
-}
-
-.logo:hover {
-    transform: translateY(-2px) scale(1.02);
-    text-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
-}
-
-.nav-links {
-    display: flex;
-    align-items: center;
-    gap: 3rem;
-}
-
-.nav-link {
-    color: var(--text-primary);
-    font-size: 0.95rem;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    position: relative;
-    padding: 0.6rem 0;
-    transition: var(--transition);
-    text-transform: uppercase;
-    font-family: var(--font-body);
-}
-
-.nav-link::before {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 0;
-    height: 3px;
-    background: linear-gradient(90deg, transparent, var(--gold), var(--gold-light), var(--gold), transparent);
-    transition: var(--transition);
-    box-shadow: 0 0 10px var(--gold);
-}
-
-.nav-link:hover {
-    color: var(--gold);
-    text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-}
-
-.nav-link:hover::before,
-.nav-link.active::before {
-    width: 100%;
-}
-
-.nav-link.active {
-    color: var(--gold);
-}
-
-.nav-btn {
-    padding: 0.9rem 2.2rem !important;
-    border-radius: 6px;
-    font-size: 0.9rem;
-    box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3);
-    border: 2px solid var(--gold);
-}
-
-.nav-btn:hover {
-    box-shadow: 0 6px 25px rgba(212, 175, 55, 0.5);
-    transform: translateY(-2px) scale(1.05);
-}
-
-.hamburger {
-    display: none;
-    flex-direction: column;
-    gap: 6px;
-    cursor: pointer;
-    padding: 0.5rem;
-}
-
-.hamburger span {
-    width: 30px;
-    height: 3px;
-    background: linear-gradient(90deg, var(--gold), var(--gold-light));
-    transition: var(--transition);
-    border-radius: 3px;
-    box-shadow: 0 0 10px rgba(212, 175, 55, 0.4);
-}
-
-.hamburger:hover span {
-    box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
-}
-
-/* Buttons */
-.btn-gold {
-    display: inline-block;
-    padding: 14px 40px;
-    background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
-    background-size: 200% 200%;
-    color: #000;
-    font-weight: 700;
-    text-transform: uppercase;
     letter-spacing: 2px;
-    border: none;
-    cursor: pointer;
-    transition: var(--transition);
-    box-shadow: 0 6px 20px rgba(212, 175, 55, 0.4);
-    position: relative;
-    overflow: hidden;
-}
-
-.btn-gold::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-    transition: left 0.5s;
-}
-
-.btn-gold:hover::before {
-    left: 100%;
-}
-
-.btn-gold:hover {
-    transform: translateY(-4px) scale(1.05);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.6);
-    background-position: 100% 100%;
-}
-
-.btn-outline {
-    display: inline-block;
-    padding: 14px 40px;
-    border: 2px solid var(--gold);
-    color: var(--gold);
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    transition: var(--transition);
-    background: transparent;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(212, 175, 55, 0.2);
-}
-
-.btn-outline::before {
-    content: '';
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 0;
-    height: 0;
-    background: var(--gold);
-    transition: var(--transition);
-    border-radius: 50%;
-    z-index: -1;
-}
-
-.btn-outline:hover::before {
-    width: 400%;
-    height: 400%;
-    border-radius: 0;
-}
-
-.btn-outline:hover {
-    color: #000;
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
-    border-color: var(--gold-light);
+    animation: pulse 1.5s infinite;
 }
 
 /* Hero Section */
 .hero {
     height: 100vh;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/desktop/Lux_Car_Perth_Hire_(4).jpg');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
+    position: relative;
     display: flex;
     align-items: center;
     justify-content: center;
     text-align: center;
-    position: relative;
     padding: 0;
+    overflow: hidden;
 }
 
-.hero-content h1 {
-    font-size: 4.5rem;
-    margin-bottom: 1.5rem;
-    letter-spacing: 2px;
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1;
 }
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-link {
+    font-weight: 500;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    padding: 5px 0;
+}
+
+.nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--gold);
+    transition: var(--transition);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+    width: 100%;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--gold);
+}
+
+.btn-gold {
+    display: inline-block;
+    padding: 12px 30px;
+    background: linear-gradient(135deg, var(--gold-dark) 0%, var(--gold) 50%, var(--gold-light) 100%);
+    background-size: 200% 200%;
+    color: #000;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    transition: var(--transition);
+    border-radius: 2px;
+}
+
+.btn-gold:hover {
+    background-position: 100% 0;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburger span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background-color: var(--gold);
+    margin: 5px 0;
+    transition: var(--transition);
+}
+
+/* Loader */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--bg-dark);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeOut 0.5s ease-in-out 2s forwards;
+}
+
+.loader-text {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    color: var(--gold);
+    letter-spacing: 2px;
+    animation: pulse 1.5s infinite;
+}
+
+/* Hero Section */
+.hero {
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 0;
+    overflow: hidden;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    z-index: 1;
+}
+
+.hero-video {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
 
 .hero-content p {
     font-size: 1.2rem;
@@ -699,14 +675,417 @@ section {
 .footer-bottom {
     text-align: center;
     padding-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.fleet-features {
+    display: flex;
+    gap: 2rem;
+}
+
+.fleet-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--gold);
+    font-weight: 500;
+}
+
+/* About / Trust */
+.about {
+    background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('https://images.unsplash.com/photo-1519642918688-7e43b19245d8?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80');
+    background-size: cover;
+    background-attachment: fixed;
+    text-align: center;
+}
+
+.trust-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    margin-top: 4rem;
+}
+
+.trust-item .number {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--gold);
+    font-family: var(--font-heading);
+    margin-bottom: 0.5rem;
+}
+
+.trust-item .label {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 0.9rem;
+}
+
+/* Contact */
+.contact {
+    background-color: var(--bg-dark);
+}
+
+
+
+.full-width {
+    width: 100%;
+}
+
+/* Footer */
+.footer {
+    background-color: #000;
+    padding: 5rem 0 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.footer-content {
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.footer-logo h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo p {
+    color: var(--text-secondary);
+    max-width: 300px;
+}
+
+.footer-links h3,
+.footer-social h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.footer-links ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+    padding-left: 5px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-icons a:hover {
+    background-color: var(--gold);
+    color: #000;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
     border-top: 1px solid rgba(255, 255, 255, 0.05);
     color: var(--text-secondary);
     font-size: 0.9rem;
 }
 
+/* Responsive */
+@media (max-width: 992px) {
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+
+    .fleet-item {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .fleet-item.reverse {
+        direction: ltr;
+    }
+
+    .fleet-item.reverse .fleet-info {
+        direction: ltr;
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--gold);
+        margin: 5px 0;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    /* Mobile Menu Active State */
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(5, 5, 5, 0.98);
+        padding: 2rem;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
 /* Page Header */
 .page-header {
     background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/desktop/Lux_Car_Perth_Hire_(10).jpg');
+    background-size: cover;
+    background-position: center;
+    padding: 10rem 0 5rem;
+    text-align: center;
+}
+
+.page-header h1 {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    color: var(--gold);
+}
+
+.page-header p {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+}
+
+/* Gallery Grid */
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem 0;
+}
+
+.gallery-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 5px;
+    height: 250px;
+}
+
+.gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition);
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+/* Animations */
+.fade-up {
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 4rem;
+    margin-bottom: 4rem;
+}
+
+.footer-logo h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.footer-logo p {
+    color: var(--text-secondary);
+    max-width: 300px;
+}
+
+.footer-links h3,
+.footer-social h3 {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+}
+
+.footer-links ul li {
+    margin-bottom: 0.8rem;
+}
+
+.footer-links a {
+    color: var(--text-secondary);
+}
+
+.footer-links a:hover {
+    color: var(--gold);
+    padding-left: 5px;
+}
+
+.social-icons {
+    display: flex;
+    gap: 1rem;
+}
+
+.social-icons a {
+    width: 40px;
+    height: 40px;
+    background-color: rgba(255, 255, 255, 0.05);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.social-icons a:hover {
+    background-color: var(--gold);
+    color: #000;
+    transform: translateY(-3px);
+}
+
+.footer-bottom {
+    text-align: center;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+/* Responsive */
+@media (max-width: 992px) {
+    .hero h1 {
+        font-size: 3.5rem;
+    }
+
+    .fleet-item {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+
+    .fleet-item.reverse {
+        direction: ltr;
+    }
+
+    .fleet-item.reverse .fleet-info {
+        direction: ltr;
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        padding: 2rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--gold);
+        margin: 5px 0;
+    }
+
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+
+    .section-title {
+        font-size: 2rem;
+    }
+
+    /* Mobile Menu Active State */
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(5, 5, 5, 0.98);
+        padding: 2rem;
+        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        animation: slideDown 0.3s ease forwards;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-10px);
+        }
+
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+}
+
+/* Page Header */
+.page-header {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('jpegmini_optimized/Lux_Car_Perth_Hire_(10).jpg');
     background-size: cover;
     background-position: center;
     padding: 10rem 0 5rem;
@@ -775,6 +1154,12 @@ section {
     align-items: center;
 }
 
+@media (max-width: 768px) {
+    .about-content-wrapper {
+        grid-template-columns: 1fr;
+    }
+}
+
 /* Booking Page */
 .booking-page {
     padding: 5rem 0;
@@ -822,7 +1207,11 @@ section {
     display: block;
 }
 
-/* Service Page */
+.dropdown:hover .nav-link {
+    color: var(--gold);
+}
+
+/* Service Page Styles */
 .service-page {
     padding: 5rem 0;
     background-color: var(--bg-dark);
@@ -867,17 +1256,6 @@ section {
     margin-right: 10px;
 }
 
-.service-image img {
-    width: 100%;
-    border-radius: 5px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    transition: var(--transition);
-}
-
-.service-image img:hover {
-    transform: scale(1.02);
-}
-
 .cta-box {
     background-color: var(--bg-card);
     padding: 2rem;
@@ -886,86 +1264,7 @@ section {
     margin-top: 2rem;
 }
 
-/* Responsive */
-@media (max-width: 992px) {
-    .hero h1 {
-        font-size: 3.5rem;
-    }
-
-    .fleet-item {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-
-    .fleet-item.reverse {
-        direction: ltr;
-    }
-
-    .fleet-item.reverse .fleet-info {
-        direction: ltr;
-    }
-
-    .contact-wrapper {
-        grid-template-columns: 1fr;
-        padding: 2rem;
-    }
-
-    .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
-    }
-}
-
 @media (max-width: 768px) {
-    .nav-links {
-        display: none;
-    }
-
-    .hamburger {
-        display: flex;
-    }
-
-    .nav-links.active {
-        display: flex;
-        flex-direction: column;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        width: 100%;
-        background-color: rgba(0, 0, 0, 0.98);
-        padding: 2rem;
-        gap: 1.5rem;
-        animation: slideDown 0.3s ease-out;
-    }
-
-    @keyframes slideDown {
-        from {
-            opacity: 0;
-            transform: translateY(-10px);
-        }
-
-        to {
-            opacity: 1;
-            transform: translateY(0);
-        }
-    }
-
-    .hero h1 {
-        font-size: 2.5rem;
-    }
-
-    .section-title {
-        font-size: 2rem;
-    }
-
-    .about-content-wrapper {
-        grid-template-columns: 1fr;
-    }
-
-    .service-content {
-        grid-template-columns: 1fr;
-    }
-
     .dropdown {
         display: block;
         width: 100%;
@@ -986,9 +1285,31 @@ section {
 
     .dropdown:hover .dropdown-content {
         display: none;
+        /* Disable hover on mobile */
     }
 
     .dropdown.active:hover .dropdown-content {
         display: block;
+    }
+}
+
+@keyframes fadeOut {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.5;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: 0.5;
     }
 }
