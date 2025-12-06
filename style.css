@@ -232,6 +232,28 @@ section {
     box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
 }
 
+.btn-outline {
+    display: inline-block;
+    padding: 12px 30px;
+    background: transparent;
+    color: var(--gold);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border: 2px solid var(--gold);
+    cursor: pointer;
+    transition: var(--transition);
+    border-radius: 2px;
+    text-decoration: none;
+}
+
+.btn-outline:hover {
+    background-color: var(--gold);
+    color: #000;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(212, 175, 55, 0.3);
+}
+
 .hamburger {
     display: none;
     cursor: pointer;
@@ -355,6 +377,19 @@ section {
     60% {
         transform: translate(-50%, -5px);
     }
+}
+
+/* Hero Image Section Below Video */
+.hero-image-section {
+    width: 100%;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
 }
 
 /* Services */
@@ -1168,6 +1203,48 @@ section {
     background-color: var(--bg-dark);
 }
 
+.vehicle-selection {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 1rem;
+    margin-top: 0.5rem;
+}
+
+.vehicle-option {
+    cursor: pointer;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    border-radius: 5px;
+    padding: 1rem;
+    text-align: center;
+    transition: var(--transition);
+    background-color: transparent;
+}
+
+.vehicle-option:hover {
+    border-color: var(--gold);
+    background-color: rgba(255, 196, 0, 0.05);
+}
+
+.vehicle-option input[type="radio"]:checked + img,
+.vehicle-option.selected {
+    border-color: var(--gold);
+    background-color: rgba(255, 196, 0, 0.1);
+}
+
+.vehicle-option img {
+    width: 100%;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    margin-bottom: 0.5rem;
+}
+
+.vehicle-option div {
+    color: var(--text-primary);
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
 /* Values Section */
 .values {
     padding: 5rem 0;
@@ -1314,4 +1391,29 @@ section {
     100% {
         opacity: 0.5;
     }
+}
+.toast {
+    min-width: 250px;
+    margin-top: 10px;
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: #fff;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    opacity: 0;
+    transform: translateX(100%);
+    transition: transform 0.5s ease, opacity 0.5s ease;
+}
+
+.toast.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.toast.success {
+    background-color: #28a745; /* green */
+}
+
+.toast.error {
+    background-color: #dc3545; /* red */
 }

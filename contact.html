@@ -38,6 +38,9 @@
                         <a href="wedding.html">Weddings</a>
                         <a href="tours.html">Wine Tours</a>
                         <a href="golf.html">Golf Tours</a>
+                        <a href="schoolball.html">School Ball</a>
+                        <a href="events.html">Events</a>
+                        <a href="other.html">Other</a>
                         <a href="terms.html">T&Cs</a>
                     </div>
                 </div>
@@ -173,8 +176,59 @@
     <script>
         document.getElementById('contactForm').addEventListener('submit', async (e) => {
             e.preventDefault();
-            alert('Thank you for your message! We will get back to you as soon as possible.');
-            e.target.reset();
+            
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                subject: document.getElementById('subject').value,
+                message: document.getElementById('message').value
+            };
+
+            try {
+                const submitButton = e.target.querySelector('button[type="submit"]');
+                const originalText = submitButton.textContent;
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+
+                // Determine the base URL
+                let baseUrl = window.location.origin;
+                
+                // If opened via file://, use localhost:3000
+                if (baseUrl === 'null' || baseUrl.startsWith('file://') || baseUrl === '') {
+                    baseUrl = 'http://localhost:3000';
+                    console.warn('⚠️ Page opened via file://. Using http://localhost:3000');
+                    console.warn('💡 Tip: Access the page via http://localhost:3000/contact.html for best results');
+                }
+                
+                const apiUrl = baseUrl + '/api/contact';
+                
+                console.log('Submitting to:', apiUrl);
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    mode: 'cors',
+                    body: JSON.stringify(formData)
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    alert(data.message || 'Thank you for your message! We will get back to you as soon as possible.');
+                    e.target.reset();
+                } else {
+                    alert(data.message || 'Failed to send message. Please try again.');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again later.');
+            } finally {
+                const submitButton = e.target.querySelector('button[type="submit"]');
+                submitButton.disabled = false;
+                submitButton.textContent = 'Send Message';
+            }
         });
     </script>
 </body>
