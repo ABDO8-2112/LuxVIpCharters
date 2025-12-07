@@ -1598,3 +1598,50 @@ section {
     margin-bottom: 10px;
     display: inline-block;
 }
+
+/* Parent container of all .fleet-img */
+.fleet-item .fleet-img-container {
+    display: flex;
+    /* align children in a row */
+    gap: 15px;
+    /* space between images */
+    flex-wrap: wrap;
+    /* allow images to move to next line if needed */
+    justify-content: center;
+    /* center images horizontally */
+}
+
+/* Individual image styling */
+.fleet-item .fleet-img {
+    flex: 1 1 180px;
+    /* flexible width, min 180px */
+    max-width: 180px;
+    /* prevent too large on big screens */
+    height: 120px;
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.fleet-item .fleet-img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .fleet-item .fleet-img {
+        flex: 1 1 140px;
+        max-width: 140px;
+        height: 100px;
+    }
+}
+
+@media (max-width: 600px) {
+    .fleet-item .fleet-img {
+        flex: 1 1 120px;
+        max-width: 120px;
+        height: 90px;
+    }
+}
