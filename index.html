@@ -79,7 +79,7 @@
     <section id="services" class="services">
         <div class="container">
             <div class="section-header">
-                <span class="subtitle">Our Services</span>
+                <span class="subtitle">Our Services Across Australia</span>
                 <h2 class="title">World-Class <span class="text-gold">Transport</span></h2>
             </div>
             <div class="services-grid">
@@ -88,7 +88,8 @@
                         <i class="fas fa-plane"></i>
                     </div>
                     <h3>Airport Transfers</h3>
-                    <p>Seamless transfers to and from Perth Airport. We monitor your flight to ensure we are there when
+                    <p>Seamless transfers to and from airports across Australia. We monitor your flight to ensure we are
+                        there when
                         you arrive.</p>
                     <a href="airport.html" class="link-arrow">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
@@ -97,7 +98,8 @@
                         <i class="fas fa-briefcase"></i>
                     </div>
                     <h3>Corporate Transfers</h3>
-                    <p>Professional, discreet, and reliable transport for executives. Work on the go in our quiet,
+                    <p>Professional, discreet, and reliable transport for executives throughout Australia. Work on the
+                        go in our quiet,
                         comfortable vehicles.</p>
                     <a href="corporate.html" class="link-arrow">Read More <i class="fas fa-arrow-right"></i></a>
                 </div>
@@ -236,6 +238,43 @@
     </section>
 
 
+    <!-- Google Reviews Section -->
+    <section style="background-color: #0a0a0a; padding: 6rem 0;">
+        <div class="container">
+            <h2
+                style="text-align: center; font-size: 3rem; margin-bottom: 3.5rem; color: #fff; font-weight: 700; position: relative; padding-bottom: 1rem;">
+                What Our Clients <span style="color: #d4af37; font-style: italic;">Say</span>
+                <span
+                    style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 80px; height: 3px; background: linear-gradient(90deg, transparent, #d4af37, transparent); display: block;"></span>
+            </h2>
+
+            <script src="https://elfsightcdn.com/platform.js" async></script>
+            <div class="elfsight-app-1bb5f94e-d578-4f65-82c3-98cd8026516a" data-elfsight-app-lazy></div>
+
+            <script>
+                function hideElfsightBranding() {
+                    document.querySelectorAll('a[href*="elfsight.com/google-reviews-widget"]').forEach(a => {
+
+                        a.style.opacity = "0";
+                        a.style.visibility = "hidden";
+                        a.style.pointerEvents = "none";
+                        a.style.height = "0";
+                        a.style.overflow = "hidden";
+                        a.style.margin = "0";
+                        a.style.padding = "0";
+                        a.innerHTML = "";
+                    });
+                }
+
+                hideElfsightBranding();
+
+                new MutationObserver(hideElfsightBranding)
+                    .observe(document.body, { childList: true, subtree: true });
+            </script>
+
+
+        </div>
+    </section>
 
 
     <!-- Footer -->
