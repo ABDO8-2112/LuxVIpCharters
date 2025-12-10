@@ -357,8 +357,10 @@
             };
 
             const submitButton = e.target.querySelector('button[type="submit"]');
+            const loadingOverlay = document.getElementById('loadingOverlay');
+
             submitButton.disabled = true;
-            submitButton.textContent = 'Submitting...';
+            if (loadingOverlay) loadingOverlay.style.display = 'flex';
 
             try {
                 const response = await fetch('sendbooking.php', { // PHP endpoint
@@ -397,12 +399,20 @@
                 showToast(`Error: ${error.message || 'An error occurred. Please try again later.'}`, 'error');
             } finally {
                 submitButton.disabled = false;
-                submitButton.textContent = 'Submit Booking Request';
+                if (loadingOverlay) loadingOverlay.style.display = 'none';
             }
         });
 
     </script>
     <div id="toast-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
+
+    <!-- Loading Overlay -->
+    <div id="loadingOverlay"
+        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; justify-content: center; align-items: center; flex-direction: column;">
+        <div class="spinner"></div>
+        <h3 style="color: var(--gold); margin-top: 1rem; font-family: 'Cinzel', serif;">Processing Booking...</h3>
+        <p style="color: #fff; opacity: 0.8;">Please wait while we confirm your details.</p>
+    </div>
 </body>
 
 </html>
