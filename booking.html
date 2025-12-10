@@ -330,7 +330,7 @@
             }
         });
 
-        // Form submission with API
+
         // Form submission to PHP
         document.getElementById('bookingForm').addEventListener('submit', async (e) => {
             e.preventDefault();
@@ -351,11 +351,11 @@
                 message: document.getElementById('message').value
             };
 
-            try {
-                const submitButton = e.target.querySelector('button[type="submit"]');
-                submitButton.disabled = true;
-                submitButton.textContent = 'Submitting...';
+            const submitButton = e.target.querySelector('button[type="submit"]');
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
 
+            try {
                 const response = await fetch('sendBooking.php', { // PHP endpoint
                     method: 'POST',
                     headers: {
@@ -364,7 +364,16 @@
                     body: JSON.stringify(formData)
                 });
 
-                const data = await response.json();
+                let data;
+                try {
+                    data = await response.json();
+                } catch (err) {
+                    // If PHP outputs HTML or errors, show it in console and toast
+                    const text = await response.text();
+                    console.error('Invalid JSON response from PHP:', text);
+                    showToast('Server returned invalid response. Please contact support.', 'error');
+                    return;
+                }
 
                 if (data.success) {
                     showToast(data.message || 'Thank you! Your booking request has been sent.', 'success');
@@ -382,11 +391,11 @@
                 console.error('Error submitting booking:', error);
                 showToast(`Error: ${error.message || 'An error occurred. Please try again later.'}`, 'error');
             } finally {
-                const submitButton = e.target.querySelector('button[type="submit"]');
                 submitButton.disabled = false;
                 submitButton.textContent = 'Submit Booking Request';
             }
         });
+
     </script>
     <div id="toast-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
 </body>

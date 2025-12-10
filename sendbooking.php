@@ -1,4 +1,6 @@
 <?php
+header('Content-Type: application/json');
+
 // Only process POST requests
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     http_response_code(405);
@@ -18,7 +20,7 @@ $service = strip_tags(trim($data['service'] ?? ''));
 $vehicle = strip_tags(trim($data['vehicle'] ?? ''));
 $passengers = strip_tags(trim($data['passengers'] ?? ''));
 $luggage = strip_tags(trim($data['luggage'] ?? ''));
-$returnTrip = $data['return-trip'] ?? false;
+$returnTrip = !empty($data['return-trip']) ? true : false;
 $returnDate = strip_tags(trim($data['return-date'] ?? ''));
 $returnTime = strip_tags(trim($data['return-time'] ?? ''));
 $message = strip_tags(trim($data['message'] ?? ''));
@@ -29,14 +31,17 @@ if (!$name || !$email || !$phone || !$date || !$time || !$service || !$vehicle |
     exit;
 }
 
-// Email content
-$to = "info@cxr.569.mytemp.website"; // Your GoDaddy email
+// GoDaddy email settings
+$to = "info@cxr.569.mytemp.website"; // Your verified GoDaddy email
 $subject = "New Booking Request: $service - $name";
 
-$returnInfo = $returnTrip ? "Yes\nReturn Date: $returnDate\nReturn Time: $returnTime" : "No";
+// Format return journey info
+$returnInfo = $returnTrip
+    ? "Yes\nReturn Date: $returnDate\nReturn Time: $returnTime"
+    : "No";
 
-$body = "
-New Booking Request
+// Compose email body
+$body = "New Booking Request
 
 Customer Information:
 Name: $name
@@ -56,9 +61,9 @@ Additional Details:
 $message
 ";
 
-// Email headers
-$headers = "From: $email\r\n";
-$headers .= "Reply-To: $email\r\n";
+// Headers (use your GoDaddy email as From)
+$headers = "From: $to\r\n"; // Must be your GoDaddy email
+$headers .= "Reply-To: $email\r\n"; // User email for reply
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
 // Send email
