@@ -1,6 +1,14 @@
 <?php
 header('Content-Type: application/json');
 
+// Include PHPMailer
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+
+require 'PHPMailer/src/Exception.php';
+require 'PHPMailer/src/PHPMailer.php';
+require 'PHPMailer/src/SMTP.php';
+
 // Only process POST requests
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     http_response_code(405);
@@ -31,17 +39,11 @@ if (!$name || !$email || !$phone || !$date || !$time || !$service || !$vehicle |
     exit;
 }
 
-// GoDaddy email settings
-$to = "info@cxr.569.mytemp.website"; // Your verified GoDaddy email
-$from = "info@cxr.569.mytemp.website"; // Must be same domain email
-$subject = "New Booking Request: $service - $name";
-
-// Format return journey info
+// Compose email body
 $returnInfo = $returnTrip
     ? "Yes\nReturn Date: $returnDate\nReturn Time: $returnTime"
     : "No";
 
-// Compose email body
 $body = "New Booking Request
 
 Customer Information:
@@ -62,16 +64,26 @@ Additional Details:
 $message
 ";
 
-// Email headers
-$headers = "From: $from\r\n";
-$headers .= "Reply-To: $email\r\n";
-$headers .= "MIME-Version: 1.0\r\n";
-$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+try {
+    $mail = new PHPMailer(true);
+    $mail->isSMTP();
+    $mail->Host = 'smtpout.secureserver.net'; // GoDaddy SMTP server
+    $mail->SMTPAuth = true;
+    $mail->Username = 'info@cxr.569.mytemp.website'; // Your GoDaddy email
+    $mail->Password = 'TTpNo394!!!!'; // GoDaddy email password
+    $mail->SMTPSecure = 'tls';
+    $mail->Port = 587;
 
-// Use -f parameter for GoDaddy envelope sender
-if (mail($to, $subject, $body, $headers, "-f$from")) {
+    $mail->setFrom('info@cxr.569.mytemp.website', 'Lux VIP Charters');
+    $mail->addAddress('info@cxr.569.mytemp.website'); // Destination email
+    $mail->addReplyTo($email, $name); // Customer reply
+
+    $mail->Subject = "New Booking Request: $service - $name";
+    $mail->Body = $body;
+
+    $mail->send();
     echo json_encode(['success' => true, 'message' => 'Your booking request has been submitted successfully!']);
-} else {
-    echo json_encode(['success' => false, 'message' => 'Failed to send booking request. Please try again later.']);
+} catch (Exception $e) {
+    echo json_encode(['success' => false, 'message' => "Mailer Error: {$mail->ErrorInfo}"]);
 }
 ?>
