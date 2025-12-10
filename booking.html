@@ -331,6 +331,7 @@
         });
 
         // Form submission with API
+        // Form submission to PHP
         document.getElementById('bookingForm').addEventListener('submit', async (e) => {
             e.preventDefault();
 
@@ -352,60 +353,21 @@
 
             try {
                 const submitButton = e.target.querySelector('button[type="submit"]');
-                const originalText = submitButton.textContent;
                 submitButton.disabled = true;
                 submitButton.textContent = 'Submitting...';
 
-                // Determine the base URL
-                let baseUrl = "https://lux-vip-backend.onrender.com";
-
-                // If opened via file://, use localhost:3000
-                if (baseUrl === 'null' || baseUrl.startsWith('file://') || baseUrl === '') {
-                    baseUrl = 'http://localhost:3000';
-                    console.warn('⚠️ Page opened via file://. Using http://localhost:3000');
-                    console.warn('💡 Tip: Access the page via http://localhost:3000/booking.html for best results');
-                }
-
-                const apiUrl = baseUrl + '/api/booking';
-
-                console.log('Submitting to:', apiUrl);
-                console.log('Form data:', formData);
-
-                // First, test if server is running
-                try {
-                    const testResponse = await fetch(baseUrl + '/api/test', {
-                        method: 'GET',
-                        mode: 'cors'
-                    });
-                    if (!testResponse.ok) {
-                        throw new Error('Server test failed');
-                    }
-                    const testData = await testResponse.json();
-                    console.log('✅ Server is accessible:', testData);
-                } catch (testError) {
-                    console.error('❌ Server connection test failed:', testError);
-                    throw new Error('Cannot connect to server. Please make sure the server is running. Open http://localhost:3000/booking.html in your browser.');
-                }
-
-                const response = await fetch(apiUrl, {
+                const response = await fetch('sendBooking.php', { // PHP endpoint
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
-                    mode: 'cors',
                     body: JSON.stringify(formData)
                 });
-
-                // Check if response is ok
-                if (!response.ok) {
-                    const errorData = await response.json().catch(() => ({ message: 'Server error occurred' }));
-                    throw new Error(errorData.message || `Server error: ${response.status}`);
-                }
 
                 const data = await response.json();
 
                 if (data.success) {
-                    showToast(data.message || 'Thank you for your booking request! We will contact you shortly.', 'success');
+                    showToast(data.message || 'Thank you! Your booking request has been sent.', 'success');
                     e.target.reset();
                     vehicleOptions.forEach(opt => {
                         opt.style.borderColor = 'rgba(255,255,255,0.1)';
@@ -414,7 +376,7 @@
                     returnTripDetails.style.display = 'none';
                     returnTripCheckbox.checked = false;
                 } else {
-                    showToast(data.message || 'Failed to submit booking request. Please try again.', 'error');
+                    showToast(data.message || 'Failed to submit booking. Please try again.', 'error');
                 }
             } catch (error) {
                 console.error('Error submitting booking:', error);
