@@ -59,21 +59,19 @@ Submitted on: " . date("Y-m-d H:i:s") . "
 ";
 
 // GoDaddy email settings
-$to = 'aamirbhattid08@gmail.com'; // Destination email (any email you want)
+$to = 'aamirbhattido8@gmail.com'; // Destination email (matching request)
 $from = 'info@cxr.569.mytemp.website'; // Verified GoDaddy email
 $subject = "New Booking Request: $service - $name";
 
 // Headers
-$headers = "From: $from\r\n";
+$headers = "From: Lux VIP Charters <$from>\r\n";
 $headers .= "Reply-To: $email\r\n";
 $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
+$headers .= "X-Mailer: PHP/" . phpversion();
 
-// Use envelope sender to improve deliverability
-$parameters = "-f$from";
-
-// Send email
-if (mail($to, $subject, $body, $headers, $parameters)) {
+// Send email (removed -f parameter which often causes failure on shared hosting if not authorized)
+if (mail($to, $subject, $body, $headers)) {
     echo json_encode(['success' => true, 'message' => 'Your booking request has been submitted successfully!']);
 } else {
     error_log("Booking email failed to send.");
