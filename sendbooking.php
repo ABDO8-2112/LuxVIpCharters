@@ -1,14 +1,6 @@
 <?php
 header('Content-Type: application/json');
 
-// Include PHPMailer
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
-
-require 'PHPMailer/src/Exception.php';
-require 'PHPMailer/src/PHPMailer.php';
-require 'PHPMailer/src/SMTP.php';
-
 // Only allow POST requests
 if ($_SERVER["REQUEST_METHOD"] != "POST") {
     http_response_code(405);
@@ -39,64 +31,52 @@ if (!$name || !$email || !$phone || !$date || !$time || !$service || !$vehicle |
     exit;
 }
 
-// Compose email body (HTML)
+// Compose email body
 $returnInfo = $returnTrip
-    ? "Yes<br>Return Date: $returnDate<br>Return Time: $returnTime"
+    ? "Yes\nReturn Date: $returnDate\nReturn Time: $returnTime"
     : "No";
 
-$body = "
-<h2>New Booking Request</h2>
-<h3>Customer Information</h3>
-<p><strong>Name:</strong> {$name}</p>
-<p><strong>Email:</strong> {$email}</p>
-<p><strong>Phone:</strong> {$phone}</p>
+$body = "New Booking Request
 
-<h3>Booking Details</h3>
-<p><strong>Service Type:</strong> {$service}</p>
-<p><strong>Date:</strong> {$date}</p>
-<p><strong>Time:</strong> {$time}</p>
-<p><strong>Vehicle:</strong> {$vehicle}</p>
-<p><strong>Passengers:</strong> {$passengers}</p>
-<p><strong>Luggage:</strong> {$luggage}</p>
-<p><strong>Return Journey:</strong> {$returnInfo}</p>
+Customer Information:
+Name: $name
+Email: $email
+Phone: $phone
 
-" . ($message ? "<h3>Additional Details</h3><p>{$message}</p>" : "") . "
-<hr>
-<p><em>This booking request was submitted from the Lux VIP Charters booking form.</em></p>
-<p><em>Submitted on: " . date("Y-m-d H:i:s") . "</em></p>
+Booking Details:
+Service Type: $service
+Date: $date
+Time: $time
+Vehicle: $vehicle
+Passengers: $passengers
+Luggage: $luggage
+Return Journey: $returnInfo
+
+Additional Details:
+$message
+
+Submitted on: " . date("Y-m-d H:i:s") . "
 ";
 
-try {
-    $mail = new PHPMailer(true);
+// GoDaddy email settings
+$to = 'aamirbhattid08@gmail.com'; // Destination email (any email you want)
+$from = 'info@cxr.569.mytemp.website'; // Verified GoDaddy email
+$subject = "New Booking Request: $service - $name";
 
-    // SMTP configuration
-    $mail->isSMTP();
-    $mail->Host = 'smtpout.secureserver.net';
-    $mail->SMTPAuth = true;
-    $mail->Username = 'info@cxr.569.mytemp.website'; // Your GoDaddy email
-    $mail->Password = 'YOUR_GODADDY_EMAIL_PASSWORD';  // Use correct password
-    $mail->SMTPSecure = 'tls'; // 'ssl' for port 465
-    $mail->Port = 587;
+// Headers
+$headers = "From: $from\r\n";
+$headers .= "Reply-To: $email\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
+$headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-    // Debugging (logs to PHP error log)
-    $mail->SMTPDebug = 0; // Set 2 for testing
-    $mail->Debugoutput = 'error_log';
+// Use envelope sender to improve deliverability
+$parameters = "-f$from";
 
-    // Email addresses
-    $mail->setFrom('info@cxr.569.mytemp.website', 'Lux VIP Charters'); // Must match GoDaddy domain email
-    $mail->addAddress('aamirbhattid08@gmail.com'); // Destination email
-    $mail->addReplyTo($email, $name); // Customer reply
-
-    // Email content
-    $mail->isHTML(true);
-    $mail->Subject = "New Booking Request: $service - $name";
-    $mail->Body = $body;
-
-    // Send email
-    $mail->send();
+// Send email
+if (mail($to, $subject, $body, $headers, $parameters)) {
     echo json_encode(['success' => true, 'message' => 'Your booking request has been submitted successfully!']);
-} catch (Exception $e) {
-    error_log("PHPMailer Error: {$mail->ErrorInfo}");
-    echo json_encode(['success' => false, 'message' => "Failed to send email. Please try again later."]);
+} else {
+    error_log("Booking email failed to send.");
+    echo json_encode(['success' => false, 'message' => 'Failed to send booking request. Please try again later.']);
 }
 ?>
