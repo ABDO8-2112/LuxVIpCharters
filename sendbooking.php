@@ -33,6 +33,7 @@ if (!$name || !$email || !$phone || !$date || !$time || !$service || !$vehicle |
 
 // GoDaddy email settings
 $to = "info@cxr.569.mytemp.website"; // Your verified GoDaddy email
+$from = "info@cxr.569.mytemp.website"; // Must be same domain email
 $subject = "New Booking Request: $service - $name";
 
 // Format return journey info
@@ -61,13 +62,14 @@ Additional Details:
 $message
 ";
 
-// Headers (use your GoDaddy email as From)
-$headers = "From: $to\r\n"; // Must be your GoDaddy email
-$headers .= "Reply-To: $email\r\n"; // User email for reply
+// Email headers
+$headers = "From: $from\r\n";
+$headers .= "Reply-To: $email\r\n";
+$headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 
-// Send email
-if (mail($to, $subject, $body, $headers)) {
+// Use -f parameter for GoDaddy envelope sender
+if (mail($to, $subject, $body, $headers, "-f$from")) {
     echo json_encode(['success' => true, 'message' => 'Your booking request has been submitted successfully!']);
 } else {
     echo json_encode(['success' => false, 'message' => 'Failed to send booking request. Please try again later.']);
