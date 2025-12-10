@@ -25,15 +25,14 @@ app.use(express.static(__dirname));
 
 // Test endpoint to verify server is running
 app.get('/api/test', (req, res) => {
-    res.status(200).json({ 
-        success: true, 
+    res.status(200).json({
+        success: true,
         message: 'Server is running!',
         timestamp: new Date().toISOString()
     });
 });
 
 // Configure Nodemailer
-// For Gmail, you'll need to use an App Password: https://support.google.com/accounts/answer/185833
 let transporter = null;
 const emailUser = process.env.EMAIL_USER;
 const emailPass = process.env.EMAIL_PASS;
@@ -46,9 +45,9 @@ if (emailUser && emailPass && emailUser !== 'your-email@gmail.com' && emailPass 
             pass: emailPass
         }
     });
-    
+
     // Test the connection
-    transporter.verify(function(error, success) {
+    transporter.verify(function (error, success) {
         if (error) {
             console.error('❌ Email service configuration error:', error.message);
             console.error('   Make sure you are using a Gmail App Password, not your regular password');
@@ -70,9 +69,9 @@ app.post('/api/contact', async (req, res) => {
 
         // Validate required fields
         if (!name || !email || !subject || !message) {
-            return res.status(400).json({ 
-                success: false, 
-                message: 'All fields are required' 
+            return res.status(400).json({
+                success: false,
+                message: 'All fields are required'
             });
         }
 
@@ -108,15 +107,15 @@ app.post('/api/contact', async (req, res) => {
             console.log('📧 Contact form submission (email not sent - credentials not configured):', { name, email, subject });
         }
 
-        res.status(200).json({ 
-            success: true, 
-            message: 'Your message has been sent successfully!' 
+        res.status(200).json({
+            success: true,
+            message: 'Your message has been sent successfully!'
         });
     } catch (error) {
         console.error('❌ Error processing contact form:', error);
-        res.status(500).json({ 
-            success: false, 
-            message: `Failed to send message: ${error.message}` 
+        res.status(500).json({
+            success: false,
+            message: `Failed to send message: ${error.message}`
         });
     }
 });
@@ -124,27 +123,27 @@ app.post('/api/contact', async (req, res) => {
 // API Endpoint for Booking Form
 app.post('/api/booking', async (req, res) => {
     try {
-        const { 
-            name, 
-            email, 
-            phone, 
-            date, 
-            time, 
-            service, 
-            vehicle, 
-            passengers, 
-            luggage, 
-            'return-trip': returnTrip, 
-            'return-date': returnDate, 
-            'return-time': returnTime, 
-            message 
+        const {
+            name,
+            email,
+            phone,
+            date,
+            time,
+            service,
+            vehicle,
+            passengers,
+            luggage,
+            'return-trip': returnTrip,
+            'return-date': returnDate,
+            'return-time': returnTime,
+            message
         } = req.body;
 
         // Validate required fields
         if (!name || !email || !phone || !date || !time || !service || !vehicle || !passengers || !luggage) {
-            return res.status(400).json({ 
-                success: false, 
-                message: 'Please fill in all required fields' 
+            return res.status(400).json({
+                success: false,
+                message: 'Please fill in all required fields'
             });
         }
 
@@ -198,26 +197,26 @@ app.post('/api/booking', async (req, res) => {
                 // Still return success to user, but log the error
             }
         } else {
-            console.log('📧 Booking request received (email not sent - credentials not configured):', { 
-                name, 
-                email, 
-                service, 
+            console.log('📧 Booking request received (email not sent - credentials not configured):', {
+                name,
+                email,
+                service,
                 vehicle,
                 date,
                 time
             });
         }
 
-        res.status(200).json({ 
-            success: true, 
-            message: 'Your booking request has been submitted successfully! We will contact you shortly to confirm your reservation.' 
+        res.status(200).json({
+            success: true,
+            message: 'Your booking request has been submitted successfully! We will contact you shortly to confirm your reservation.'
         });
     } catch (error) {
         console.error('❌ Error processing booking form:', error);
         console.error('Error details:', error.stack);
-        res.status(500).json({ 
-            success: false, 
-            message: `Failed to submit booking request: ${error.message}` 
+        res.status(500).json({
+            success: false,
+            message: `Failed to submit booking request: ${error.message}`
         });
     }
 });

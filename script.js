@@ -80,4 +80,64 @@ document.addEventListener('DOMContentLoaded', () => {
         el.classList.add('fade-up');
         observer.observe(el);
     });
+    // Audio Control Logic
+    const video = document.querySelector('.hero-video');
+    const audioBtn = document.getElementById('audio-control');
+    const icon = audioBtn?.querySelector('i');
+
+    if (video && audioBtn && icon) {
+        // Toggle function
+        function toggleAudio() {
+            if (video.muted) {
+                video.muted = false;
+                icon.className = 'fas fa-volume-up';
+            } else {
+                video.muted = true;
+                icon.className = 'fas fa-volume-mute';
+            }
+        }
+
+        // Button click
+        audioBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent document click from triggering immediately after
+            toggleAudio();
+        });
+
+        // Smart Autoplay: Try to play with sound
+        // We initially set muted=false to try, but if it fails we revert
+        // actually standard autoplay is already 'autoplay muted' in HTML for safety.
+        // We will try to UNMUTE it.
+
+        const tryUnmute = async () => {
+            video.muted = false;
+            try {
+                await video.play();
+                icon.className = 'fas fa-volume-up';
+            } catch (err) {
+                console.log('Autoplay with sound failed, fallback to muted');
+                video.muted = true;
+                icon.className = 'fas fa-volume-mute';
+                // Ensure it's playing
+                video.play();
+            }
+        };
+
+        // Try immediately (works if user has high MEI)
+        tryUnmute();
+
+        // Also unmute on first interaction with the document
+        const unmuteOnInteract = () => {
+            if (video.muted) {
+                video.muted = false;
+                icon.className = 'fas fa-volume-up';
+            }
+            document.removeEventListener('click', unmuteOnInteract);
+            document.removeEventListener('scroll', unmuteOnInteract);
+            document.removeEventListener('keydown', unmuteOnInteract);
+        };
+
+        document.addEventListener('click', unmuteOnInteract);
+        document.addEventListener('scroll', unmuteOnInteract);
+        document.addEventListener('keydown', unmuteOnInteract);
+    }
 });
