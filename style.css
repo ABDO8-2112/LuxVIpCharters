@@ -907,8 +907,8 @@ section {
 
 .footer-content {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 4rem;
+    grid-template-columns: 2fr 1.5fr 1fr 1fr;
+    gap: 3rem;
     margin-bottom: 4rem;
 }
 
@@ -920,6 +920,33 @@ section {
 .footer-logo p {
     color: var(--text-secondary);
     max-width: 300px;
+}
+
+.authorised-provider h2 {
+    font-size: 1.2rem;
+    margin-bottom: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.authorised-provider p {
+    margin-bottom: 0.8rem;
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+}
+
+.authorised-provider img {
+    max-width: 140px;
+    margin-bottom: 1rem;
+    border-radius: 4px;
+    opacity: 0.9;
+    transition: var(--transition);
+}
+
+.authorised-provider img:hover {
+    opacity: 1;
+    transform: scale(1.02);
 }
 
 .footer-links h3,
