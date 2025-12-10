@@ -922,26 +922,27 @@ section {
     max-width: 300px;
 }
 
-.authorised-provider h2 {
-    font-size: 1.2rem;
-    margin-bottom: 1.5rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 600;
+.authorised-provider h2,
+.authorised-provider h3 {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-transform: none;
+    font-weight: 400;
 }
 
 .authorised-provider p {
-    margin-bottom: 0.8rem;
-    color: var(--text-secondary);
-    font-size: 0.95rem;
+    font-size: 0.9rem;
+    margin-bottom: 0.2rem;
+    color: #fff;
+    white-space: nowrap;
 }
 
 .authorised-provider img {
-    max-width: 140px;
-    margin-bottom: 1rem;
+    max-width: 220px;
+    height: auto;
+    margin-bottom: 0.5rem;
     border-radius: 4px;
-    opacity: 0.9;
-    transition: var(--transition);
 }
 
 .authorised-provider img:hover {
@@ -1491,6 +1492,90 @@ section {
     margin-right: 10px;
 }
 
+/* Wedding & Tour Packages */
+.wedding-packages,
+.tour-packages {
+    margin-top: 4rem;
+    margin-bottom: 3rem;
+    width: 100%;
+}
+
+.wedding-packages h3,
+.tour-packages h3 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: var(--gold);
+    text-align: center;
+}
+
+.package-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.package-card {
+    background-color: var(--bg-card);
+    border: 1px solid rgba(212, 175, 55, 0.2);
+    padding: 2rem;
+    border-radius: 5px;
+    text-align: center;
+    transition: var(--transition);
+}
+
+.package-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 5px 20px rgba(212, 175, 55, 0.1);
+}
+
+.package-card h4 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #fff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+}
+
+.package-card .price-row {
+    margin-bottom: 1.5rem;
+}
+
+.package-card .price-label {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--text-secondary);
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+}
+
+.package-card .price {
+    display: block;
+    font-size: 1.8rem;
+    color: var(--gold);
+    font-weight: 700;
+}
+
+.package-card .price-desc {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.package-note {
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: #e0e0e0;
+    font-style: italic;
+    background: rgba(212, 175, 55, 0.1);
+    padding: 10px;
+    border-radius: 4px;
+}
+
 .cta-box {
     background-color: var(--bg-card);
     padding: 2rem;
@@ -2037,6 +2122,23 @@ select {
 .vehicle-images img:first-child {
     grid-column: 1 / -1;
     height: 350px;
+}
+
+.vehicle-images.compact-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.8rem;
+}
+
+.vehicle-images.compact-grid img {
+    height: 160px;
+    /* Smaller uniform height */
+}
+
+.vehicle-images.compact-grid img:first-child {
+    grid-column: auto;
+    /* Reset to single column */
+    height: 160px;
+    /* Reset height */
 }
 
 .vehicle-content h2 {
