@@ -3399,3 +3399,22 @@ body {
         /* Let's hide secondary images on mobile to save vertical space as requested */
     }
 }
+
+/* Fix Authorised Provider block alignment on mobile */
+.authorised-provider {
+    text-align: center;
+}
+
+.authorised-provider img {
+    display: block;
+    margin: 0 auto;
+    max-width: 160px;
+    /* adjust if needed */
+    height: auto;
+}
+
+.authorised-provider p {
+    text-align: center !important;
+    margin-left: auto;
+    margin-right: auto;
+}
