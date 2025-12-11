@@ -3229,3 +3229,173 @@ body {
         /* Simplify mobile: just click the card */
     }
 }
+
+/* =========================================
+   FLEET PAGE - FULL GRID (Modern Redesign)
+   ========================================= */
+
+.fleet-page-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(450px, 1fr));
+    gap: 2rem;
+    margin-top: 1rem;
+    margin-bottom: 3rem;
+}
+
+.fleet-intro-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 3rem;
+    text-align: center;
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.fleet-intro-card h3 {
+    font-size: 2rem;
+    color: var(--gold);
+    margin-bottom: 1.5rem;
+    font-family: var(--font-heading);
+}
+
+.fleet-intro-card p {
+    color: #e0e0e0;
+    line-height: 1.8;
+    margin-bottom: 2rem;
+    font-size: 1.05rem;
+}
+
+.fleet-page-card {
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.4);
+}
+
+.fleet-page-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.15);
+}
+
+/* Image Grid for Cards - SMALLER */
+.vehicle-images-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 100px 100px;
+    /* Reduced from 150px */
+    gap: 4px;
+    height: 204px;
+    /* 100*2 + 4 */
+    width: 100%;
+}
+
+/* First image takes full left column height, others stack on right */
+.vehicle-images-grid img:nth-child(1) {
+    grid-column: 1 / 2;
+    grid-row: 1 / 3;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vehicle-images-grid img:nth-child(2) {
+    grid-column: 2 / 3;
+    grid-row: 1 / 2;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vehicle-images-grid img:nth-child(3) {
+    grid-column: 2 / 3;
+    grid-row: 2 / 3;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.vehicle-page-content {
+    padding: 2rem;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.vehicle-page-content h2 {
+    font-size: 1.8rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    font-family: var(--font-heading);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding-bottom: 1rem;
+    margin-bottom: 1rem;
+}
+
+.vehicle-page-specs {
+    display: flex;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+    color: var(--gold);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.vehicle-page-specs span {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.vehicle-page-desc {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+    flex-grow: 1;
+    /* Pushes button to bottom */
+}
+
+/* Responsive adjustments for fleet page */
+@media (max-width: 900px) {
+    .fleet-page-grid {
+        grid-template-columns: 1fr;
+        /* Single column on tablets/mobile */
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .vehicle-images-grid {
+        height: auto;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .vehicle-images-grid img:nth-child(1),
+    .vehicle-images-grid img:nth-child(2),
+    .vehicle-images-grid img:nth-child(3) {
+        grid-column: auto;
+        grid-row: auto;
+        height: 200px;
+        /* Reduced height per image on mobile */
+    }
+
+    /* Hide 2nd and 3rd image on tiny screens if desired, but user said 'same images' 
+       so will keep them but maybe stack them or keep as slider. 
+       Let's stack them for now or just show main one and hide others to save space?
+       User said "make sections smaller". 
+       Let's stick to stacking but smaller. */
+    .vehicle-images-grid img:nth-child(2),
+    .vehicle-images-grid img:nth-child(3) {
+        display: none;
+        /* Let's hide secondary images on mobile to save vertical space as requested */
+    }
+}
