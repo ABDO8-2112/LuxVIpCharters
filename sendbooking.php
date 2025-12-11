@@ -59,8 +59,8 @@ Submitted on: " . date("Y-m-d H:i:s") . "
 ";
 
 // GoDaddy email settings
-$to = 'aamirbhattido8@gmail.com'; // Destination email (matching request)
-$from = 'info@cxr.569.mytemp.website'; // Verified GoDaddy email
+$to = 'luxchartersperth@outlook.com'; // Destination email (matching request)
+$from = 'info@luxvipchartersperth.com.au'; // Verified GoDaddy email
 $subject = "New Booking Request: $service - $name";
 
 // Headers
