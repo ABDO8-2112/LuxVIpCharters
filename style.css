@@ -2294,3 +2294,98 @@ select {
         transform: rotate(360deg);
     }
 }
+
+/* Terms & Conditions Modern Styles */
+.terms-wrapper {
+    background-color: rgba(20, 20, 20, 0.6); /* reusing var(--bg-card) which is rgba(20, 20, 20, 0.6) */
+    padding: 3rem;
+    border: 1px solid rgba(255, 255, 255, 0.05); 
+    border-radius: 8px; 
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(5px);
+}
+
+.terms-wrapper h2 {
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 2.2rem;
+    background: linear-gradient(to right, var(--gold), #fff);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+}
+
+.terms-wrapper h3 {
+    color: var(--gold);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    padding-bottom: 0.5rem;
+    margin-top: 3rem;
+    margin-bottom: 1.5rem;
+    letter-spacing: 1px;
+    font-size: 1.3rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    display: inline-block;
+    width: 100%;
+}
+
+.terms-wrapper h4 {
+    color: #fff;
+    margin-top: 1.5rem;
+    margin-bottom: 0.8rem;
+    font-size: 1.1rem;
+    font-weight: 500;
+}
+
+.terms-wrapper ul {
+    margin-bottom: 1.5rem;
+    padding-left: 0.5rem;
+}
+
+.terms-wrapper li {
+    margin-bottom: 0.8rem;
+    padding: 0.8rem 1rem;
+    border-left: 2px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    background: linear-gradient(90deg, rgba(255, 255, 255, 0.02), transparent);
+    border-radius: 0 4px 4px 0;
+}
+
+.terms-wrapper li:hover {
+    border-left-color: var(--gold);
+    background: linear-gradient(90deg, rgba(212, 175, 55, 0.1), transparent);
+    padding-left: 1.5rem;
+    transform: translateX(5px);
+}
+
+.terms-wrapper strong {
+    color: var(--gold);
+    margin-right: 5px;
+}
+
+.terms-wrapper hr {
+    border: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+    margin: 3rem 0;
+}
+
+.terms-wrapper p {
+    color: #ccc;
+    line-height: 1.8;
+    margin-bottom: 1rem;
+}
+
+@media (max-width: 768px) {
+    .terms-wrapper {
+        padding: 1.5rem;
+    }
+    
+    .terms-wrapper h2 {
+        font-size: 1.8rem;
+    }
+    
+    .terms-wrapper h3 {
+        font-size: 1.1rem;
+    }
+}
