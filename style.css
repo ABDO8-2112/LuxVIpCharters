@@ -1001,8 +1001,12 @@ section {
 
 /* Responsive */
 @media (max-width: 992px) {
+    section {
+        padding: 5rem 0;
+    }
+
     .hero h1 {
-        font-size: 3.5rem;
+        font-size: 3rem;
     }
 
     .fleet-item {
@@ -1020,16 +1024,24 @@ section {
 
     .contact-wrapper {
         grid-template-columns: 1fr;
-        padding: 2rem;
+        padding: 2.5rem;
     }
 
     .footer-content {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
     }
 }
 
 @media (max-width: 768px) {
+    section {
+        padding: 4rem 0;
+    }
+
+    .container {
+        padding: 0 1.5rem;
+    }
+
     .nav-links {
         display: none;
     }
@@ -1037,6 +1049,8 @@ section {
     .hamburger {
         display: block;
         cursor: pointer;
+        z-index: 1001;
+        /* Ensure above active menu */
     }
 
     .hamburger span {
@@ -1045,40 +1059,149 @@ section {
         height: 3px;
         background-color: var(--gold);
         margin: 5px 0;
+        transition: var(--transition);
+    }
+
+    .hamburger.toggle span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.toggle span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
     }
 
     .hero h1 {
-        font-size: 2.5rem;
+        font-size: 2.2rem;
+        padding: 0 1rem;
     }
 
-    .section-title {
-        font-size: 2rem;
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .section-header {
+        margin-bottom: 3rem;
+    }
+
+    .title {
+        font-size: 2.2rem;
     }
 
     /* Mobile Menu Active State */
     .nav-links.active {
         display: flex;
         flex-direction: column;
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        /* Fixed to cover screen */
+        top: 0;
         left: 0;
         width: 100%;
+        height: 100vh;
         background-color: rgba(5, 5, 5, 0.98);
-        padding: 2rem;
-        border-bottom: 1px solid rgba(212, 175, 55, 0.1);
+        padding: 6rem 2rem 2rem;
+        overflow-y: auto;
         animation: slideDown 0.3s ease forwards;
+        gap: 1.5rem;
+        align-items: center;
+        /* Center items */
+    }
+
+    .nav-links.active .nav-link {
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links.active .btn-gold {
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    /* Mobile Dropdown */
+    .dropdown {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown .nav-link {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .dropdown-content {
+        position: static;
+        display: none;
+        width: 100%;
+        box-shadow: none;
+        background-color: transparent;
+        padding: 1rem 0;
+        border-top: none;
+    }
+
+    .dropdown.active .dropdown-content {
+        display: block;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .dropdown-content a {
+        padding: 10px;
+        font-size: 1rem;
+        color: var(--text-secondary);
     }
 
     @keyframes slideDown {
         from {
             opacity: 0;
-            transform: translateY(-10px);
+            transform: translateY(-20px);
         }
 
         to {
             opacity: 1;
             transform: translateY(0);
         }
+    }
+
+    /* Footer Stack */
+    .footer-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .footer-logo p {
+        margin: 0 auto;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    /* Service Pages */
+    .service-content {
+        grid-template-columns: 1fr;
+        gap: 3rem;
+    }
+
+    .about-content-wrapper {
+        grid-template-columns: 1fr;
+    }
+
+    .trust-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .services-grid,
+    .package-grid {
+        grid-template-columns: 1fr;
     }
 }
 
@@ -2297,10 +2420,11 @@ select {
 
 /* Terms & Conditions Modern Styles */
 .terms-wrapper {
-    background-color: rgba(20, 20, 20, 0.6); /* reusing var(--bg-card) which is rgba(20, 20, 20, 0.6) */
+    background-color: rgba(20, 20, 20, 0.6);
+    /* reusing var(--bg-card) which is rgba(20, 20, 20, 0.6) */
     padding: 3rem;
-    border: 1px solid rgba(255, 255, 255, 0.05); 
-    border-radius: 8px; 
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(5px);
 }
@@ -2380,12 +2504,374 @@ select {
     .terms-wrapper {
         padding: 1.5rem;
     }
-    
+
     .terms-wrapper h2 {
         font-size: 1.8rem;
     }
-    
+
     .terms-wrapper h3 {
         font-size: 1.1rem;
+    }
+}
+
+.reviews-title {
+    text-align: center;
+    font-size: 3rem;
+    margin-bottom: 3.5rem;
+    color: #fff;
+    font-weight: 700;
+    position: relative;
+    padding-bottom: 1rem;
+}
+
+.reviews-title span {
+    color: #d4af37;
+    font-style: italic;
+}
+
+.reviews-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80px;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    display: block;
+}
+
+@media (max-width: 768px) {
+    .reviews-title {
+        font-size: 2.2rem;
+        margin-bottom: 2rem;
+    }
+}
+
+/* =========================================
+   MOBILE & RESPONSIVE OPTIMIZATIONS
+   ========================================= */
+
+@media (max-width: 992px) {
+    section {
+        padding: 5rem 0;
+    }
+
+    .hero h1 {
+        font-size: 3rem;
+    }
+
+    .fleet-item,
+    .vehicle-card,
+    .vehicle-card:nth-child(even) {
+        grid-template-columns: 1fr;
+        gap: 2rem;
+        direction: ltr;
+        /* Reset direction for mobile */
+    }
+
+    .fleet-item.reverse,
+    .vehicle-card:nth-child(even) .vehicle-content {
+        direction: ltr;
+    }
+
+    .contact-wrapper {
+        grid-template-columns: 1fr;
+        padding: 3rem;
+    }
+
+    .footer-content {
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+    }
+}
+
+@media (max-width: 768px) {
+
+    /* Global Adjustments */
+    :root {
+        --font-size-base: 14px;
+    }
+
+    section {
+        padding: 3rem 0;
+        /* Reduced padding */
+    }
+
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    /* Header & Nav */
+    .nav-links {
+        display: none;
+    }
+
+    .hamburger {
+        display: block;
+        cursor: pointer;
+        z-index: 1001;
+    }
+
+    .hamburger span {
+        display: block;
+        width: 25px;
+        height: 3px;
+        background-color: var(--gold);
+        margin: 5px 0;
+        transition: var(--transition);
+    }
+
+    .hamburger.toggle span:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+
+    .hamburger.toggle span:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger.toggle span:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
+    }
+
+    /* Mobile Menu Overlay */
+    .nav-links.active {
+        display: flex;
+        flex-direction: column;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100vh;
+        /* Full viewport height */
+        background-color: rgba(5, 5, 5, 0.98);
+        padding: 6rem 2rem 2rem;
+        overflow-y: auto;
+        /* Allow scrolling if menu is long */
+        gap: 1.5rem;
+        align-items: center;
+        z-index: 1000;
+    }
+
+    .nav-links.active .nav-link {
+        font-size: 1.2rem;
+        width: 100%;
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .nav-links.active .btn-gold {
+        width: 100%;
+        text-align: center;
+        margin-top: 1rem;
+    }
+
+    /* Mobile Dropdown */
+    .dropdown {
+        width: 100%;
+        text-align: center;
+    }
+
+    .dropdown-content {
+        position: static;
+        /* Stack naturally */
+        display: none;
+        width: 100%;
+        box-shadow: none;
+        background-color: rgba(255, 255, 255, 0.03);
+        /* Subtle bg for hierarchy */
+        padding: 0;
+        border-top: none;
+        margin-top: 0.5rem;
+    }
+
+    .dropdown.active .dropdown-content {
+        display: block;
+        animation: fadeIn 0.3s ease;
+    }
+
+    .dropdown-content a {
+        padding: 12px;
+        font-size: 1rem;
+        color: var(--text-secondary);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .dropdown-content a:last-child {
+        border-bottom: none;
+    }
+
+    /* Typography */
+    .hero h1 {
+        font-size: 2.2rem;
+        padding: 0 1rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+        padding: 0 1rem;
+        margin-bottom: 2rem;
+    }
+
+    .section-header {
+        margin-bottom: 3rem;
+    }
+
+    .title,
+    .reviews-title,
+    .page-header h1 {
+        font-size: 2.2rem;
+    }
+
+    .reviews-title {
+        margin-bottom: 2rem;
+    }
+
+    /* Grids to Stack */
+    .about-content-wrapper,
+    .trust-grid,
+    .services-grid,
+    .package-grid,
+    .vehicle-images.compact-grid,
+    .vehicle-card,
+    .contact-wrapper,
+    .footer-content {
+        grid-template-columns: 1fr;
+    }
+
+    /* Specific Element Fixes */
+    .contact-wrapper,
+    .vehicle-card,
+    .booking-form-container {
+        padding: 1.5rem !important;
+        /* Force tighter padding on mobile */
+    }
+
+    .fleet-item {
+        gap: 2rem;
+    }
+
+    /* Footer Cleanup */
+    .footer-content {
+        gap: 3rem;
+        text-align: center;
+    }
+
+    .footer-logo p {
+        margin: 0 auto;
+    }
+
+    .social-icons {
+        justify-content: center;
+    }
+
+    .audio-btn {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+
+    .terms-wrapper {
+        padding: 1.5rem;
+    }
+
+    .terms-wrapper h2 {
+        font-size: 1.8rem;
+    }
+
+    /* Ensure Inputs don't overflow */
+    input,
+    select,
+    textarea {
+        max-width: 100%;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr !important;
+        /* Force stack for form rows */
+        gap: 1rem !important;
+    }
+}
+
+/* Loading Overlay & Toast */
+.loading-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    z-index: 10000;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.loading-overlay h3 {
+    color: var(--gold);
+    margin-top: 1rem;
+    font-family: var(--font-heading);
+}
+
+.loading-overlay p {
+    color: #fff;
+    opacity: 0.8;
+}
+
+.toast-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+}
+
+/* =========================================
+   EXTRA MOBILE FIXES (Small Screens)
+   ========================================= */
+html,
+body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
+@media (max-width: 480px) {
+    .hero h1 {
+        font-size: 1.8rem !important;
+        /* Visual fix for small screens */
+    }
+
+    .title,
+    .reviews-title {
+        font-size: 1.8rem !important;
+    }
+
+    .section-header {
+        margin-bottom: 2rem !important;
+    }
+
+    .btn-gold,
+    .btn-outline {
+        padding: 10px 20px;
+        /* Smaller buttons */
+        font-size: 0.9rem;
+    }
+
+    .contact-item {
+        padding: 1.5rem !important;
+        flex-direction: column;
+        /* Stack icon and text */
+        text-align: center;
+    }
+
+    .contact-item div {
+        text-align: center !important;
+    }
+
+    .footer-logo h2 {
+        font-size: 1.5rem;
     }
 }

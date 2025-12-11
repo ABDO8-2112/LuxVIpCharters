@@ -404,14 +404,11 @@
         });
 
     </script>
-    <div id="toast-container" style="position: fixed; top: 20px; right: 20px; z-index: 9999;"></div>
-
-    <!-- Loading Overlay -->
-    <div id="loadingOverlay"
-        style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: 10000; justify-content: center; align-items: center; flex-direction: column;">
+    <div id="toast-container" class="toast-container"></div>
+    <div id="loadingOverlay" class="loading-overlay">
         <div class="spinner"></div>
-        <h3 style="color: var(--gold); margin-top: 1rem; font-family: 'Cinzel', serif;">Processing Booking...</h3>
-        <p style="color: #fff; opacity: 0.8;">Please wait while we confirm your details.</p>
+        <h3>Processing Booking...</h3>
+        <p>Please wait while we confirm your details.</p>
     </div>
 </body>
 
