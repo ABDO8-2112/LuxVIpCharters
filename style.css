@@ -3093,3 +3093,139 @@ body {
         object-fit: cover;
     }
 }
+
+/* =========================================
+   MODERN FLEET SECTION (Redesign)
+   ========================================= */
+.fleet-grid-modern {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+    perspective: 1000px;
+}
+
+.fleet-card-modern {
+    background: var(--bg-card);
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.fleet-card-modern:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5);
+    border-color: var(--gold);
+}
+
+.fleet-card-img {
+    position: relative;
+    width: 100%;
+    height: 250px;
+    overflow: hidden;
+}
+
+.fleet-card-img img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.8s ease;
+}
+
+.fleet-card-modern:hover .fleet-card-img img {
+    transform: scale(1.1);
+}
+
+.fleet-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.fleet-card-modern:hover .fleet-overlay {
+    opacity: 1;
+}
+
+.view-btn {
+    color: #fff;
+    border: 1px solid var(--gold);
+    padding: 10px 25px;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    background: rgba(0, 0, 0, 0.8);
+    transform: translateY(20px);
+    transition: all 0.4s ease;
+}
+
+.fleet-card-modern:hover .view-btn {
+    transform: translateY(0);
+}
+
+.view-btn:hover {
+    background: var(--gold);
+    color: #000;
+}
+
+.fleet-card-info {
+    padding: 1.5rem;
+    text-align: center;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent 20%);
+}
+
+.fleet-card-info h3 {
+    font-size: 1.3rem;
+    margin-bottom: 0.5rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.fleet-capacity {
+    color: var(--gold);
+    font-size: 0.9rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+}
+
+.fleet-cta-container {
+    text-align: center;
+    margin-top: 3rem;
+}
+
+.fleet-note {
+    color: #666;
+    font-size: 0.9rem;
+    margin-top: 1rem;
+    font-style: italic;
+}
+
+/* Mobile Tweaks for Fleet Grid */
+@media (max-width: 600px) {
+    .fleet-grid-modern {
+        grid-template-columns: 1fr;
+        padding: 0 1rem;
+    }
+
+    .fleet-card-img {
+        height: 220px;
+    }
+
+    /* Keep overlay visible on touch if desired, or simplify hover */
+    .fleet-overlay {
+        display: none;
+        /* Simplify mobile: just click the card */
+    }
+}
