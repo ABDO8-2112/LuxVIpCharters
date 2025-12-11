@@ -15,8 +15,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const hamburger = document.querySelector('.hamburger');
     const navLinks = document.querySelector('.nav-links');
     const navLinksItems = document.querySelectorAll('.nav-link');
+    const dropdown = document.querySelector('.dropdown');
 
-    if (hamburger) {
+    if (hamburger && navLinks) {
         hamburger.addEventListener('click', () => {
             navLinks.classList.toggle('active');
             hamburger.classList.toggle('toggle');
@@ -24,21 +25,34 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Close mobile menu when a link is clicked
+    // BUT: don't close when clicking the main "Services" dropdown link on mobile
     navLinksItems.forEach(link => {
-        link.addEventListener('click', () => {
-            navLinks.classList.remove('active');
-            hamburger.classList.remove('toggle');
+        link.addEventListener('click', (e) => {
+            const isMobile = window.innerWidth <= 768;
+            const parent = link.parentElement;
+            const isDropdownMainLink = parent && parent.classList.contains('dropdown');
+
+            if (isMobile && isDropdownMainLink) {
+                // This is the "Services" main link on mobile → let dropdown toggle handle it
+                return;
+            }
+
+            // All other nav links behave normally: close menu
+            if (navLinks && hamburger) {
+                navLinks.classList.remove('active');
+                hamburger.classList.remove('toggle');
+            }
         });
     });
 
     // Mobile Dropdown Toggle
-    const dropdown = document.querySelector('.dropdown');
     if (dropdown) {
         dropdown.addEventListener('click', (e) => {
             if (window.innerWidth <= 768) {
                 // Only prevent default if clicking the main link, not sub-links
                 if (e.target.closest('.dropdown > .nav-link')) {
                     e.preventDefault();
+                    e.stopPropagation(); // stop bubbling into other handlers
                     dropdown.classList.toggle('active');
                 }
             }
@@ -76,10 +90,13 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }, observerOptions);
 
-    document.querySelectorAll('.service-card, .fleet-item, .section-header, .hero-content, .contact-wrapper').forEach(el => {
-        el.classList.add('fade-up');
-        observer.observe(el);
-    });
+    document
+        .querySelectorAll('.service-card, .fleet-item, .section-header, .hero-content, .contact-wrapper')
+        .forEach(el => {
+            el.classList.add('fade-up');
+            observer.observe(el);
+        });
+
     // Audio Control Logic
     const video = document.querySelector('.hero-video');
     const audioBtn = document.getElementById('audio-control');
@@ -104,10 +121,6 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         // Smart Autoplay: Try to play with sound
-        // We initially set muted=false to try, but if it fails we revert
-        // actually standard autoplay is already 'autoplay muted' in HTML for safety.
-        // We will try to UNMUTE it.
-
         const tryUnmute = async () => {
             video.muted = false;
             try {
@@ -122,7 +135,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         };
 
-        // Try immediately (works if user has high MEI)
+        // Try immediately
         tryUnmute();
 
         // Also unmute on first interaction with the document
