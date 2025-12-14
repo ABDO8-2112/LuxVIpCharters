@@ -60,7 +60,7 @@ Submitted on: " . date("Y-m-d H:i:s") . "
 
 // GoDaddy email settings
 $to = 'luxchartersperth@outlook.com'; // Destination email (matching request)
-$from = 'info@luxvipchartersperth.com.au'; // Verified GoDaddy email
+$from = 'no-reply@luxvipchartersperth.com.au'; // Verified GoDaddy email
 $subject = "New Booking Request: $service - $name";
 
 // Headers
