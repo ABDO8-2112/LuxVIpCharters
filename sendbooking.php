@@ -67,7 +67,7 @@ Return Journey: $returnInfo
 Additional Details:
 $message
 
-Submitted on: " . date("Y-m-d H:i:s") . "
+Submitted on: " . date("d F Y h:i a") . "
 ";
 
 // GoDaddy email settings
