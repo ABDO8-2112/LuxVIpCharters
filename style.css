@@ -300,6 +300,15 @@ section {
     z-index: 0;
 }
 
+/* Hide native controls on iOS/Android */
+.hero-video::-webkit-media-controls {
+    display: none !important;
+}
+.hero-video::-webkit-media-controls-start-playback-button {
+    display: none !important;
+    -webkit-appearance: none;
+}
+
 .hero-content {
     position: relative;
     z-index: 2;

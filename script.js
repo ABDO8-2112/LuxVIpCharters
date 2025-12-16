@@ -120,23 +120,20 @@ document.addEventListener('DOMContentLoaded', () => {
             toggleAudio();
         });
 
-        // Smart Autoplay: Try to play with sound
-        const tryUnmute = async () => {
-            video.muted = false;
+        // Smart Autoplay: Ensure video plays (muted by default to satisfy browser policies)
+        const ensurePlay = async () => {
+            // Always start muted for best autoplay success rate
+            video.muted = true;
             try {
                 await video.play();
-                icon.className = 'fas fa-volume-up';
-            } catch (err) {
-                console.log('Autoplay with sound failed, fallback to muted');
-                video.muted = true;
                 icon.className = 'fas fa-volume-mute';
-                // Ensure it's playing
-                video.play();
+            } catch (err) {
+                console.log('Autoplay failed:', err);
             }
         };
 
         // Try immediately
-        tryUnmute();
+        ensurePlay();
 
         // Also unmute on first interaction with the document
         const unmuteOnInteract = () => {
