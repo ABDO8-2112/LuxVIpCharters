@@ -71,7 +71,7 @@ Submitted on: " . date("d F Y h:i a") . "
 ";
 
 // GoDaddy email settings
-$to = 'luxchartersperth@outlook.com'; // Destination email (matching request)
+$to = 'info@luxvipchartersperth.com.au'; // Destination email (matching request)
 $from = 'no-reply@luxvipchartersperth.com.au'; // Verified GoDaddy email
 $subject = "New Booking Request: $service - $name";
 
@@ -82,8 +82,8 @@ $headers .= "MIME-Version: 1.0\r\n";
 $headers .= "Content-Type: text/plain; charset=UTF-8\r\n";
 $headers .= "X-Mailer: PHP/" . phpversion();
 
-// Send email (removed -f parameter which often causes failure on shared hosting if not authorized)
-if (mail($to, $subject, $body, $headers)) {
+// Send email with -f parameter (Required for cPanel/SPF authentication to prevents spam folder)
+if (mail($to, $subject, $body, $headers, "-f$from")) {
     echo json_encode(['success' => true, 'message' => 'Your booking request has been submitted successfully!']);
 } else {
     error_log("Booking email failed to send.");
