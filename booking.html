@@ -369,22 +369,25 @@
             if (loadingOverlay) loadingOverlay.style.display = 'flex';
 
             try {
-                const response = await fetch('sendbooking.php', { // PHP endpoint
+                const response = await fetch('/sendbooking.php', {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json',
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(formData)
                 });
 
+                const raw = await response.text(); // read ONCE
                 let data;
+
                 try {
-                    data = await response.json();
+                    data = JSON.parse(raw);
                 } catch (err) {
-                    // If PHP outputs HTML or errors, show it in console and toast
-                    const text = await response.text();
-                    console.error('Invalid JSON response from PHP:', text);
+                    console.error('Invalid JSON response from PHP:', raw);
                     showToast('Server returned invalid response. Please contact support.', 'error');
+                    return; // safe because finally will still run
+                }
+
+                if (!response.ok) {
+                    showToast(data?.message || `Server error (${response.status})`, 'error');
                     return;
                 }
 
