@@ -113,7 +113,7 @@ $smtpPort = 587;
 $smtpUser = $from;
 
 // Use mailbox password OR app password (if MFA)
-$smtpPass = 'PASTE_NO_REPLY_PASSWORD_OR_APP_PASSWORD_HERE';
+$smtpPass = 'Jamesiscool23';
 
 try {
     $mail = new PHPMailer(true);
@@ -142,3 +142,4 @@ try {
     error_log("SMTP send failed: " . $e->getMessage());
     echo json_encode(['success' => false, 'message' => 'Failed to send booking request. Please try again later.']);
 }
+?>
