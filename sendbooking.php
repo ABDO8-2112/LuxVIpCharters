@@ -26,9 +26,21 @@ $returnTime = strip_tags(trim($data['return-time'] ?? ''));
 $message = strip_tags(trim($data['message'] ?? ''));
 
 // Validate required fields
-if (!$name || !$email || !$phone || !$date || !$time || !$service || !$vehicle || !$passengers || !$luggage) {
+if (!$name || !$email || !$phone || !$date || !$time || !$service || !$vehicle || !$passengers || $luggage === '') {
     echo json_encode(['success' => false, 'message' => 'Please fill in all required fields']);
     exit;
+}
+
+// Format dates and times
+$date = date("d F Y", strtotime($date));
+$time = date("h:i a", strtotime($time));
+
+if (!empty($returnDate)) {
+    $returnDate = date("d F Y", strtotime($returnDate));
+}
+
+if (!empty($returnTime)) {
+    $returnTime = date("h:i a", strtotime($returnTime));
 }
 
 // Compose email body
