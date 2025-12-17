@@ -1,4 +1,29 @@
+// Google Ads Global Site Tag
+(function () {
+    var script = document.createElement('script');
+    script.async = true;
+    script.src = "https://www.googletagmanager.com/gtag/js?id=AW-16710459015";
+    document.head.appendChild(script);
+
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { window.dataLayer.push(arguments); }
+    window.gtag = gtag;
+    gtag('js', new Date());
+    gtag('config', 'AW-16710459015');
+})();
+
 document.addEventListener('DOMContentLoaded', () => {
+    // Google Ads Call Tracking
+    document.body.addEventListener('click', (e) => {
+        const link = e.target.closest('a[href^="tel:"]');
+        if (link) {
+            gtag('event', 'call_click', {
+                'event_category': 'Contact',
+                'event_label': link.getAttribute('href')
+            });
+        }
+    });
+
     // Header Scroll Effect
     const header = document.querySelector('.header');
     if (header) {

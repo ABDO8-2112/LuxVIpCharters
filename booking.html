@@ -392,6 +392,14 @@
                 }
 
                 if (data.success) {
+                    // Google Ads Conversion Event
+                    if (typeof gtag === 'function') {
+                        gtag('event', 'booking_submission', {
+                            'event_category': 'Form',
+                            'event_label': 'Booking Request'
+                        });
+                    }
+                    
                     showToast(data.message || 'Thank you! Your booking request has been sent.', 'success');
                     e.target.reset();
                     vehicleOptions.forEach(opt => {
