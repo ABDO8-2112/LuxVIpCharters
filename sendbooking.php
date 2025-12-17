@@ -24,6 +24,8 @@ function clean($v): string
 $name = clean($data['name'] ?? '');
 $email = trim((string) ($data['email'] ?? ''));
 $phone = clean($data['phone'] ?? '');
+$pickup_location = clean($data['pickup_location'] ?? '');
+$dropoff_location = clean($data['dropoff_location'] ?? '');
 $date = clean($data['date'] ?? '');
 $time = clean($data['time'] ?? '');
 $service = clean($data['service'] ?? '');
@@ -35,7 +37,7 @@ $returnDate = clean($data['return-date'] ?? ($data['returnDate'] ?? ($data['retu
 $returnTime = clean($data['return-time'] ?? ($data['returnTime'] ?? ($data['return_time'] ?? '')));
 $message = clean($data['message'] ?? '');
 
-if ($name === '' || $email === '' || $phone === '' || $date === '' || $time === '' || $service === '' || $vehicle === '' || $passengers === '' || $luggage === '') {
+if ($name === '' || $email === '' || $phone === '' || $pickup_location === '' || $dropoff_location === '' || $date === '' || $time === '' || $service === '' || $vehicle === '' || $passengers === '' || $luggage === '') {
     echo json_encode(['success' => false, 'message' => 'Please fill in all required fields']);
     exit;
 }
@@ -79,6 +81,10 @@ Customer Information:
 Name: $name
 Email: $email
 Phone: $phone
+
+Journey Details:
+Pick Up Location: $pickup_location
+Drop Off Location: $dropoff_location
 
 Booking Details:
 Service Type: $service

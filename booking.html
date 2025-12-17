@@ -100,6 +100,28 @@
 
                     <div class="form-row"
                         style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                        <div class="form-group" style="position: relative;">
+                            <label for="pickup_location"
+                                style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Pick Up
+                                Location</label>
+                            <input type="text" id="pickup_location" name="pickup_location" required
+                                style="width: 100%; padding: 12px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 5px;"
+                                autocomplete="off">
+                            <div id="pickup_location_list" class="autocomplete-items"></div>
+                        </div>
+                        <div class="form-group" style="position: relative;">
+                            <label for="dropoff_location"
+                                style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Drop Off
+                                Location</label>
+                            <input type="text" id="dropoff_location" name="dropoff_location" required
+                                style="width: 100%; padding: 12px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 5px;"
+                                autocomplete="off">
+                            <div id="dropoff_location_list" class="autocomplete-items"></div>
+                        </div>
+                    </div>
+
+                    <div class="form-row"
+                        style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
                         <div class="form-group">
                             <label for="date"
                                 style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Date</label>
@@ -350,6 +372,8 @@
                 name: document.getElementById('name').value,
                 email: document.getElementById('email').value,
                 phone: document.getElementById('phone').value,
+                pickup_location: document.getElementById('pickup_location').value,
+                dropoff_location: document.getElementById('dropoff_location').value,
                 date: document.getElementById('date').value,
                 time: document.getElementById('time').value,
                 service: document.getElementById('service').value,
@@ -399,7 +423,7 @@
                             'event_label': 'Booking Request'
                         });
                     }
-                    
+
                     showToast(data.message || 'Thank you! Your booking request has been sent.', 'success');
                     e.target.reset();
                     vehicleOptions.forEach(opt => {
@@ -420,6 +444,131 @@
             }
         });
 
+    </script>
+
+    <style>
+        /* Autocomplete styles */
+        .autocomplete-items {
+            position: absolute;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-bottom: none;
+            border-top: none;
+            z-index: 99;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background-color: var(--bg-card);
+            border-radius: 0 0 5px 5px;
+            max-height: 200px;
+            overflow-y: auto;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        .autocomplete-items div {
+            padding: 10px;
+            cursor: pointer;
+            background-color: #1a1a1a;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            color: #ccc;
+            font-size: 0.9rem;
+        }
+
+        .autocomplete-items div:hover {
+            background-color: rgba(212, 175, 55, 0.1);
+            color: var(--gold);
+        }
+
+        .autocomplete-active {
+            background-color: rgba(212, 175, 55, 0.2) !important;
+            color: var(--gold) !important;
+        }
+    </style>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            function setupAutocomplete(inputId, listId) {
+                const input = document.getElementById(inputId);
+                const list = document.getElementById(listId);
+                let currentFocus = -1;
+                let debounceTimer;
+
+                if (!input || !list) return;
+
+                input.addEventListener('input', function (e) {
+                    const val = this.value;
+
+                    // Clear previous results
+                    list.innerHTML = '';
+                    currentFocus = -1;
+
+                    if (!val || val.length < 3) return;
+
+                    clearTimeout(debounceTimer);
+                    debounceTimer = setTimeout(() => {
+                        fetch(`https://nominatim.openstreetmap.org/search?format=json&q=${encodeURIComponent(val)}&countrycodes=au&limit=5`)
+                            .then(response => response.json())
+                            .then(data => {
+                                list.innerHTML = ''; // Clear again just in case
+                                if (data.length === 0) return;
+
+                                data.forEach(item => {
+                                    const div = document.createElement('div');
+                                    // Make the matching part bold (simple approach)
+                                    div.innerHTML = item.display_name;
+                                    div.addEventListener('click', function () {
+                                        input.value = item.display_name;
+                                        list.innerHTML = '';
+                                    });
+                                    list.appendChild(div);
+                                });
+                            })
+                            .catch(err => console.error('Error fetching address:', err));
+                    }, 300); // 300ms debounce
+                });
+
+                input.addEventListener('keydown', function (e) {
+                    let x = list.getElementsByTagName('div');
+                    if (e.keyCode == 40) { // DOWN
+                        currentFocus++;
+                        addActive(x);
+                    } else if (e.keyCode == 38) { // UP
+                        currentFocus--;
+                        addActive(x);
+                    } else if (e.keyCode == 13) { // ENTER
+                        e.preventDefault();
+                        if (currentFocus > -1) {
+                            if (x) x[currentFocus].click();
+                        }
+                    }
+                });
+
+                function addActive(x) {
+                    if (!x) return false;
+                    removeActive(x);
+                    if (currentFocus >= x.length) currentFocus = 0;
+                    if (currentFocus < 0) currentFocus = (x.length - 1);
+                    x[currentFocus].classList.add("autocomplete-active");
+                    // Scroll to view
+                    x[currentFocus].scrollIntoView({ block: "nearest" });
+                }
+
+                function removeActive(x) {
+                    for (let i = 0; i < x.length; i++) {
+                        x[i].classList.remove("autocomplete-active");
+                    }
+                }
+
+                // Close list when clicking outside
+                document.addEventListener('click', function (e) {
+                    if (e.target !== input && e.target !== list) {
+                        list.innerHTML = '';
+                    }
+                });
+            }
+
+            setupAutocomplete('pickup_location', 'pickup_location_list');
+            setupAutocomplete('dropoff_location', 'dropoff_location_list');
+        });
     </script>
     <div id="toast-container" class="toast-container"></div>
     <div id="loadingOverlay" class="loading-overlay">
