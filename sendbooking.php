@@ -127,7 +127,7 @@ try {
     exit;
 
 } catch (Exception $e) {
-    error_log("SMTP send failed: " . $e->getMessage());
+    error_log("MAIL send failed: " . $e->getMessage());
     echo json_encode(['success' => false, 'message' => 'Failed to send booking request. Please try again later.']);
     exit;
 }
