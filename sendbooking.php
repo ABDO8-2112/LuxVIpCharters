@@ -111,13 +111,7 @@ try {
     $mail = new PHPMailer(true);
     $mail->CharSet = 'UTF-8';
 
-    // Use standard PHP mail() as SMTP port 587 is blocked by host
     $mail->isMail();
-
-    // Remove SMTP-specific settings that were causing timeouts
-    // $mail->Host = ...
-    // $mail->Port = ...
-    // $mail->SMTPAuth = ...
 
     $mail->setFrom($from, 'Lux VIP Charters');
     $mail->addAddress($to);
