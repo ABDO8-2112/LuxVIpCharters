@@ -121,7 +121,7 @@ try {
 
     $mail->isMail();
 
-    $mail->setFrom($from, 'Lux VIP Charters');
+    $mail->setFrom($from, 'Lux VIP Charters Perth');
     $mail->addAddress($to);
     $mail->addReplyTo($email, $name);
 
