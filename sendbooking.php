@@ -26,6 +26,8 @@ $email = trim((string) ($data['email'] ?? ''));
 $phone = clean($data['phone'] ?? '');
 $pickup_location = clean($data['pickup_location'] ?? '');
 $dropoff_location = clean($data['dropoff_location'] ?? '');
+$return_pickup_location = clean($data['return_pickup_location'] ?? '');
+$return_dropoff_location = clean($data['return_dropoff_location'] ?? '');
 $date = clean($data['date'] ?? '');
 $time = clean($data['time'] ?? '');
 $service = clean($data['service'] ?? '');
@@ -71,7 +73,7 @@ if ($returnTrip) {
 }
 
 $returnInfo = $returnTrip
-    ? "Yes\nReturn Date: " . ($prettyReturnDate ?: 'N/A') . "\nReturn Time: " . ($prettyReturnTime ?: 'N/A')
+    ? "Yes\nReturn Date: " . ($prettyReturnDate ?: 'N/A') . "\nReturn Time: " . ($prettyReturnTime ?: 'N/A') . "\nReturn Pick Up: " . ($return_pickup_location ?: 'N/A') . "\nReturn Drop Off: " . ($return_dropoff_location ?: 'N/A')
     : "No";
 
 

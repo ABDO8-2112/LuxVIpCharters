@@ -232,6 +232,28 @@
                     </div>
 
                     <div id="return-trip-details" style="display: none; margin-bottom: 1.5rem;">
+                        <div class="form-row"
+                            style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 1.5rem;">
+                            <div class="form-group" style="position: relative;">
+                                <label for="return_pickup_location"
+                                    style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Return Pick Up
+                                    Location</label>
+                                <input type="text" id="return_pickup_location" name="return_pickup_location"
+                                    style="width: 100%; padding: 12px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 5px;"
+                                    autocomplete="off">
+                                <div id="return_pickup_location_list" class="autocomplete-items"></div>
+                            </div>
+                            <div class="form-group" style="position: relative;">
+                                <label for="return_dropoff_location"
+                                    style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Return Drop Off
+                                    Location</label>
+                                <input type="text" id="return_dropoff_location" name="return_dropoff_location"
+                                    style="width: 100%; padding: 12px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 5px;"
+                                    autocomplete="off">
+                                <div id="return_dropoff_location_list" class="autocomplete-items"></div>
+                            </div>
+                        </div>
+
                         <div class="form-row" style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;">
                             <div class="form-group">
                                 <label for="return-date"
@@ -381,6 +403,8 @@
                 passengers: document.getElementById('passengers').value,
                 luggage: document.getElementById('luggage').value,
                 'return-trip': document.getElementById('return-trip').checked,
+                'return_pickup_location': document.getElementById('return_pickup_location').value,
+                'return_dropoff_location': document.getElementById('return_dropoff_location').value,
                 'return-date': document.getElementById('return-date').value,
                 'return-time': document.getElementById('return-time').value,
                 message: document.getElementById('message').value
@@ -568,6 +592,8 @@
 
             setupAutocomplete('pickup_location', 'pickup_location_list');
             setupAutocomplete('dropoff_location', 'dropoff_location_list');
+            setupAutocomplete('return_pickup_location', 'return_pickup_location_list');
+            setupAutocomplete('return_dropoff_location', 'return_dropoff_location_list');
         });
     </script>
     <div id="toast-container" class="toast-container"></div>
