@@ -39,7 +39,7 @@ $returnDate = clean($data['return-date'] ?? ($data['returnDate'] ?? ($data['retu
 $returnTime = clean($data['return-time'] ?? ($data['returnTime'] ?? ($data['return_time'] ?? '')));
 $message = clean($data['message'] ?? '');
 
-if ($name === '' || $email === '' || $phone === '' || $pickup_location === '' || $dropoff_location === '' || $date === '' || $time === '' || $service === '' || $vehicle === '' || $passengers === '' || $luggage === '') {
+if ($name === '' || $email === '' || $phone === '' || $pickup_location === '' || $dropoff_location === '' || $date === '' || $time === '' || $service === '' || $vehicle === '' || $passengers === '') {
     echo json_encode(['success' => false, 'message' => 'Please fill in all required fields']);
     exit;
 }
