@@ -3677,7 +3677,7 @@ body {
     left: 0;
     width: 100%;
     height: 40px;
-    background: var(--gold);
+    background: var(--gold-dark);
     /* Gold Background */
     z-index: 1002;
     display: flex;
