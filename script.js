@@ -175,4 +175,14 @@ document.addEventListener('DOMContentLoaded', () => {
         document.addEventListener('scroll', unmuteOnInteract);
         document.addEventListener('keydown', unmuteOnInteract);
     }
+    // Floating Call Button (Desktop Only)
+    // Injected dynamically to avoid editing all HTML files
+    if (window.innerWidth > 768) {
+        const callBtn = document.createElement('a');
+        callBtn.href = 'tel:+61406454436';
+        callBtn.className = 'floating-call-btn';
+        callBtn.innerHTML = '<i class="fas fa-phone-alt"></i>';
+        callBtn.title = 'Call Now';
+        document.body.appendChild(callBtn);
+    }
 });
