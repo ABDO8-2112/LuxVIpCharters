@@ -411,6 +411,10 @@
             };
 
             const submitButton = e.target.querySelector('button[type="submit"]');
+
+            // Assign ID only on valid submission as requested
+            submitButton.id = 'formsubmittedID';
+
             const loadingOverlay = document.getElementById('loadingOverlay');
 
             submitButton.disabled = true;
