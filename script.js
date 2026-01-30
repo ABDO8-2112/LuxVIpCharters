@@ -13,6 +13,26 @@
 })();
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Top Info Bar Injection (Desktop)
+    if (window.innerWidth > 900) {
+        const topBar = document.createElement('div');
+        topBar.className = 'top-info-bar';
+        topBar.innerHTML = `
+            <div class="social-icons-top">
+                <a href="https://www.facebook.com/luxvipchartersperth" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.instagram.com/lux.vip.charters.perth/" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="contact-info-top">
+                <a href="tel:+61406454436"><i class="fas fa-phone-alt"></i> +61 406 454 436</a>
+                <a href="mailto:luxchartersperth@outlook.com"><i class="fas fa-envelope"></i> luxchartersperth@outlook.com</a>
+                <span class="timing"><i class="fas fa-clock"></i> Mon - Sun: 24 Hours</span>
+            </div>
+        `;
+        document.body.prepend(topBar);
+        document.body.classList.add('has-top-bar');
+    }
+
     // Google Ads Call Tracking
     document.body.addEventListener('click', (e) => {
         const link = e.target.closest('a[href^="tel:"]');
