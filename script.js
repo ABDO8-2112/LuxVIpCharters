@@ -152,35 +152,16 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     // Audio Control Logic
+    // Audio Control Logic (Auto-Unmute on Interaction)
     const video = document.querySelector('.hero-video');
-    const audioBtn = document.getElementById('audio-control');
-    const icon = audioBtn?.querySelector('i');
 
-    if (video && audioBtn && icon) {
-        // Toggle function
-        function toggleAudio() {
-            if (video.muted) {
-                video.muted = false;
-                icon.className = 'fas fa-volume-up';
-            } else {
-                video.muted = true;
-                icon.className = 'fas fa-volume-mute';
-            }
-        }
-
-        // Button click
-        audioBtn.addEventListener('click', (e) => {
-            e.stopPropagation(); // Prevent document click from triggering immediately after
-            toggleAudio();
-        });
-
+    if (video) {
         // Smart Autoplay: Ensure video plays (muted by default to satisfy browser policies)
         const ensurePlay = async () => {
             // Always start muted for best autoplay success rate
             video.muted = true;
             try {
                 await video.play();
-                icon.className = 'fas fa-volume-mute';
             } catch (err) {
                 console.log('Autoplay failed:', err);
             }
@@ -189,20 +170,21 @@ document.addEventListener('DOMContentLoaded', () => {
         // Try immediately
         ensurePlay();
 
-        // Also unmute on first interaction with the document
+        // Unmute on first interaction with the document
         const unmuteOnInteract = () => {
             if (video.muted) {
                 video.muted = false;
-                icon.className = 'fas fa-volume-up';
             }
             document.removeEventListener('click', unmuteOnInteract);
             document.removeEventListener('scroll', unmuteOnInteract);
             document.removeEventListener('keydown', unmuteOnInteract);
+            document.removeEventListener('touchstart', unmuteOnInteract);
         };
 
         document.addEventListener('click', unmuteOnInteract);
         document.addEventListener('scroll', unmuteOnInteract);
         document.addEventListener('keydown', unmuteOnInteract);
+        document.addEventListener('touchstart', unmuteOnInteract);
     }
     // Floating Call Button (Desktop Only)
     // Injected dynamically to avoid editing all HTML files
