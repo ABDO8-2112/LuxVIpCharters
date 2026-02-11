@@ -2361,20 +2361,6 @@ select {
     transform: scale(1);
 }
 
-color: #000;
-transform: scale(1.1);
-box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
-}
-
-@media (max-width: 768px) {
-    .audio-btn {
-        bottom: 1.5rem;
-        right: 1.5rem;
-        width: 40px;
-        height: 40px;
-        font-size: 1rem;
-    }
-}
 
 /* Loading Spinner */
 .spinner {
