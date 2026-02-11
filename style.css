@@ -1399,6 +1399,13 @@ section {
     text-align: center;
 }
 
+@media (max-width: 900px) {
+    .page-header {
+        padding-top: 14rem;
+        /* Increased to clear fixed header + top bar */
+    }
+}
+
 .page-header h1 {
     font-size: 3.5rem;
     margin-bottom: 1rem;
