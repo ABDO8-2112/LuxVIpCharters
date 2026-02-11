@@ -3718,16 +3718,62 @@ body {
 
 /* Shift Header Down when Top Bar is present */
 body.has-top-bar .header {
-    top: 40px;
+    top: var(--top-bar-height, 40px);
 }
 
 /* Mobile: Hide Top Bar and Reset Header */
+/* Mobile: Adjust Top Bar and Header */
 @media (max-width: 900px) {
     .top-info-bar {
-        display: none !important;
+        /* display: none !important; REMOVED */
+        position: fixed;
+        /* Keep fixed to stay at top */
+        height: auto;
+        /* Allow flexible height */
+        padding: 5px 1rem;
+        /* Slightly reduced padding */
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px;
+        text-align: center;
+        font-size: 0.8rem;
+        /* Slightly smaller text */
     }
 
+    .top-info-bar .contact-info-top {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 10px;
+    }
+
+    .top-info-bar .social-icons-top {
+        margin-left: 0;
+        margin-right: 0;
+        width: 100%;
+        /* Force new line if needed, or just let flex handle it */
+        display: flex;
+        justify-content: center;
+        margin-bottom: 2px;
+    }
+
+    /* Adjust header position for taller top bar */
+    /* We will handle the exact top offset via JS or estimated CSS */
+
+    /* 
+       Estimate: 2 rows ~ 70-80px. 
+       Let's try a CSS-only approach first for common mobile widths. 
+       If it wraps to 3 lines, it might be taller.
+    */
     body.has-top-bar .header {
-        top: 0;
+        top: var(--top-bar-height, 90px);
+        /* Approximate height for 2-3 lines of content */
+    }
+}
+
+@media (max-width: 480px) {
+
+    /* Smaller phones: likely 3 lines */
+    body.has-top-bar .header {
+        top: var(--top-bar-height, 110px);
     }
 }
