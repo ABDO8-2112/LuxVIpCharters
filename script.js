@@ -206,12 +206,20 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     // Floating Call Button (Desktop Only)
     // Injected dynamically to avoid editing all HTML files
-    if (window.innerWidth > 768) {
-        const callBtn = document.createElement('a');
-        callBtn.href = 'tel:+61406454436';
-        callBtn.className = 'floating-call-btn';
-        callBtn.innerHTML = '<i class="fas fa-phone-alt"></i>';
-        callBtn.title = 'Call Now';
-        document.body.appendChild(callBtn);
-    }
+    // Floating Call Button (All Devices - Bottom Right)
+    // Injected dynamically to avoid editing all HTML files
+    const callBtn = document.createElement('a');
+    callBtn.href = 'tel:+61406454436';
+    callBtn.className = 'floating-call-btn';
+    callBtn.innerHTML = '<i class="fas fa-phone-alt"></i>';
+    callBtn.title = 'Call Now';
+    document.body.appendChild(callBtn);
+
+    // Floating Booking Button (All Devices - Bottom Left)
+    const bookBtn = document.createElement('a');
+    bookBtn.href = '/booking/';
+    bookBtn.className = 'floating-book-btn';
+    bookBtn.innerHTML = '<i class="far fa-calendar-alt"></i>'; // Changed to outline style for cleaner look, or fas for solid
+    bookBtn.title = 'Book Now';
+    document.body.appendChild(bookBtn);
 });

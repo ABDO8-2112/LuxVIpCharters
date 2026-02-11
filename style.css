@@ -3610,13 +3610,14 @@ body {
 }
 
 /* ---- Floating Call Button ---- */
-.floating-call-btn {
+/* ---- Floating Call Button ---- */
+.floating-call-btn,
+.floating-book-btn {
     position: fixed;
     bottom: 30px;
-    right: 30px;
     width: 60px;
     height: 60px;
-    background-color: #ffc400;
+    background-color: var(--gold);
     /* Gold Theme */
     color: white;
     border-radius: 50%;
@@ -3631,15 +3632,25 @@ body {
     border: 2px solid white;
 }
 
-.floating-call-btn:hover {
+.floating-call-btn {
+    right: 30px;
+}
+
+.floating-book-btn {
+    left: 30px;
+}
+
+.floating-call-btn:hover,
+.floating-book-btn:hover {
     transform: scale(1.1);
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
-    background-color: #dca122;
+    background-color: var(--gold-dark);
     color: white;
 }
 
 /* Pulse Animation */
-.floating-call-btn::before {
+.floating-call-btn::before,
+.floating-book-btn::before {
     content: '';
     position: absolute;
     width: 100%;
@@ -3663,10 +3674,23 @@ body {
     }
 }
 
-/* Hide on Mobile (as requested: Desktop only) */
+/* Adjust for smaller screens if needed */
 @media (max-width: 768px) {
+
+    .floating-call-btn,
+    .floating-book-btn {
+        width: 50px;
+        height: 50px;
+        font-size: 20px;
+        bottom: 20px;
+    }
+
     .floating-call-btn {
-        display: none !important;
+        right: 20px;
+    }
+
+    .floating-book-btn {
+        left: 20px;
     }
 }
 
