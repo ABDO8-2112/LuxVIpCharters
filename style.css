@@ -3723,50 +3723,57 @@ body.has-top-bar .header {
 
 /* Mobile: Hide Top Bar and Reset Header */
 /* Mobile: Adjust Top Bar and Header */
+/* Mobile: Adjust Top Bar and Header */
 @media (max-width: 900px) {
     .top-info-bar {
-        /* display: none !important; REMOVED */
         position: fixed;
         /* Keep fixed to stay at top */
         height: auto;
         /* Allow flexible height */
-        padding: 5px 1rem;
-        /* Slightly reduced padding */
-        flex-wrap: wrap;
+        padding: 8px 1rem;
+        /* Breathing room */
+        flex-direction: column;
         justify-content: center;
-        gap: 8px;
+        align-items: center;
+        gap: 5px;
         text-align: center;
-        font-size: 0.8rem;
-        /* Slightly smaller text */
+        font-size: 0.75rem;
+        /* Crisp small font */
+        line-height: 1.4;
+    }
+
+    /* Hide social icons on mobile to match reference */
+    .top-info-bar .social-icons-top {
+        display: none;
     }
 
     .top-info-bar .contact-info-top {
+        display: flex;
         flex-wrap: wrap;
         justify-content: center;
-        gap: 10px;
+        align-items: center;
+        gap: 15px;
+        /* Space between phone and email */
+        width: 100%;
     }
 
-    .top-info-bar .social-icons-top {
-        margin-left: 0;
-        margin-right: 0;
+    /* Phone and Email usually fit on one line. 
+       If screen is very narrow, they will wrap naturally. 
+    */
+
+    /* Force timing to a new line */
+    .top-info-bar .contact-info-top .timing {
+        flex-basis: 100%;
         width: 100%;
-        /* Force new line if needed, or just let flex handle it */
-        display: flex;
-        justify-content: center;
-        margin-bottom: 2px;
+        margin-top: 3px;
+        display: block;
     }
 
     /* Adjust header position for taller top bar */
     /* We will handle the exact top offset via JS or estimated CSS */
-
-    /* 
-       Estimate: 2 rows ~ 70-80px. 
-       Let's try a CSS-only approach first for common mobile widths. 
-       If it wraps to 3 lines, it might be taller.
-    */
     body.has-top-bar .header {
-        top: var(--top-bar-height, 90px);
-        /* Approximate height for 2-3 lines of content */
+        top: var(--top-bar-height, 70px);
+        /* Approximate height */
     }
 }
 
