@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         <div class="contact-info-top">
             <a href="tel:+61406454436"><i class="fas fa-phone-alt"></i> +61 406 454 436</a>
-            <a href="mailto:luxchartersperth@outlook.com"><i class="fas fa-envelope"></i> luxchartersperth@outlook.com</a>
+            <a href="mailto:info@luxvipchartersperth.com.au"><i class="fas fa-envelope"></i> info@luxvipchartersperth.com.au</a>
             <span class="timing"><i class="fas fa-clock"></i> Mon - Sun: 24 Hours</span>
         </div>
     `;
