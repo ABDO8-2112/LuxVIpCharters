@@ -2365,8 +2365,8 @@ select {
 /* Audio Control Button */
 .audio-btn {
     position: absolute;
-    bottom: 15rem;
-    /* Moved significantly up */
+    bottom: 7.5rem;
+    /* ~120px, sits just above the 90px top of floating btn */
     right: 3rem;
     background: rgba(0, 0, 0, 0.4);
     border: 2px solid var(--gold);
@@ -2394,8 +2394,8 @@ select {
 
 @media (max-width: 768px) {
     .audio-btn {
-        bottom: 8rem;
-        /* Moved up on mobile */
+        bottom: 6rem;
+        /* ~96px, sits just above the 70px top of mobile floating btn */
         right: 1.5rem;
         width: 40px;
         height: 40px;
