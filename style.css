@@ -3822,3 +3822,41 @@ body.has-top-bar .header {
         top: var(--top-bar-height, 110px);
     }
 }
+
+/* Audio Control Button (Added for Fix) */
+.audio-btn {
+    position: absolute;
+    bottom: 120px;
+    right: 30px;
+    z-index: 20;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: var(--transition);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+}
+
+.audio-btn:hover {
+    background: var(--gold);
+    color: #000;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+@media (max-width: 768px) {
+    .audio-btn {
+        width: 50px;
+        height: 50px;
+        bottom: 100px;
+        right: 20px;
+        font-size: 1rem;
+    }
+}
