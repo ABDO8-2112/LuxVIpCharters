@@ -152,39 +152,62 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
     // Audio Control Logic
-    // Audio Control Logic (Auto-Unmute on Interaction)
+    // Audio Control Logic
     const video = document.querySelector('.hero-video');
+    const audioBtn = document.getElementById('audio-control');
+    const icon = audioBtn?.querySelector('i');
 
-    if (video) {
-        // Smart Autoplay: Ensure video plays (muted by default to satisfy browser policies)
+    if (video && audioBtn && icon) {
+        // Toggle function
+        function toggleAudio() {
+            if (video.muted) {
+                video.muted = false;
+                icon.className = 'fas fa-volume-up';
+            } else {
+                video.muted = true;
+                icon.className = 'fas fa-volume-mute';
+            }
+        }
+
+        // Button click
+        audioBtn.addEventListener('click', (e) => {
+            e.stopPropagation(); // Prevent document click from triggering immediately after
+            toggleAudio();
+        });
+
+        // Smart Autoplay
         const ensurePlay = async () => {
-            // Always start muted for best autoplay success rate
             video.muted = true;
             try {
                 await video.play();
+                icon.className = 'fas fa-volume-mute';
             } catch (err) {
                 console.log('Autoplay failed:', err);
             }
         };
 
-        // Try immediately
         ensurePlay();
 
-        // Unmute on first interaction with the document
+        // Optional: still allow unmute on interaction if desired, but user asked to undo.
+        // Usually "undo" means go back to exactly how it was. 
+        // The previous version DID have "unmuteOnInteract" logic too in the last working version? 
+        // Let's check the history.
+        // Logic from step 212 shows: "Also unmute on first interaction...".
+        // I will include it to be safe, as it helps with UX, but the BUTTON is the main thing requested back.
+
         const unmuteOnInteract = () => {
             if (video.muted) {
                 video.muted = false;
+                icon.className = 'fas fa-volume-up';
             }
             document.removeEventListener('click', unmuteOnInteract);
             document.removeEventListener('scroll', unmuteOnInteract);
             document.removeEventListener('keydown', unmuteOnInteract);
-            document.removeEventListener('touchstart', unmuteOnInteract);
         };
 
         document.addEventListener('click', unmuteOnInteract);
         document.addEventListener('scroll', unmuteOnInteract);
         document.addEventListener('keydown', unmuteOnInteract);
-        document.addEventListener('touchstart', unmuteOnInteract);
     }
     // Floating Call Button (Desktop Only)
     // Injected dynamically to avoid editing all HTML files

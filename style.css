@@ -2361,6 +2361,44 @@ select {
     transform: scale(1);
 }
 
+/* Audio Control Button */
+.audio-btn {
+    position: absolute;
+    bottom: 3rem;
+    right: 3rem;
+    background: rgba(0, 0, 0, 0.4);
+    border: 2px solid var(--gold);
+    color: var(--gold);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    z-index: 10;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.2rem;
+    transition: var(--transition);
+    backdrop-filter: blur(5px);
+}
+
+.audio-btn:hover {
+    background: var(--gold);
+    color: #000;
+    transform: scale(1.1);
+    box-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+}
+
+@media (max-width: 768px) {
+    .audio-btn {
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 40px;
+        height: 40px;
+        font-size: 1rem;
+    }
+}
+
 
 /* Loading Spinner */
 .spinner {
