@@ -2364,7 +2364,8 @@ select {
 /* Audio Control Button */
 .audio-btn {
     position: absolute;
-    bottom: 3rem;
+    bottom: 7rem;
+    /* Moved up to avoid overlap with floating call button */
     right: 3rem;
     background: rgba(0, 0, 0, 0.4);
     border: 2px solid var(--gold);
@@ -2391,7 +2392,8 @@ select {
 
 @media (max-width: 768px) {
     .audio-btn {
-        bottom: 1.5rem;
+        bottom: 5.5rem;
+        /* Moved up on mobile too */
         right: 1.5rem;
         width: 40px;
         height: 40px;
