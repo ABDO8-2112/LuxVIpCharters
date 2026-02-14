@@ -298,6 +298,45 @@
                         </div>
                     </div>
 
+                    <!-- Airport Options (Hidden by default) -->
+                    <div id="airport-package-section" class="form-group" style="display: none; margin-bottom: 1.5rem;">
+                        <label style="display: block; margin-bottom: 1rem; color: var(--gold);">Select Airport
+                            Option</label>
+
+                        <div class="airport-package-grid"
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 0.5rem;">
+                            <!-- Hourly Rate -->
+                            <label class="package-option airport-option"
+                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
+                                <input type="radio" name="airport_package"
+                                    value="Hourly Rate (V class $119, Sprinter $149)" style="display: none;">
+                                <div
+                                    style="color: var(--gold); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem; font-family: 'Cinzel', serif;">
+                                    Hourly Rate</div>
+                                <div style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">V
+                                    class $119 | Sprinter $149</div>
+                                <div
+                                    style="color: var(--gold); font-size: 0.8rem; font-weight: 400; font-style: italic;">
+                                    Plus GST</div>
+                            </label>
+
+                            <!-- Airport to City -->
+                            <label class="package-option airport-option"
+                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
+                                <input type="radio" name="airport_package"
+                                    value="Airport to City (V class $159, Sprinter $209)" style="display: none;">
+                                <div
+                                    style="color: var(--gold); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem; font-family: 'Cinzel', serif;">
+                                    Airport to City</div>
+                                <div style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">V
+                                    class $159 | Sprinter $209</div>
+                                <div
+                                    style="color: var(--gold); font-size: 0.8rem; font-weight: 400; font-style: italic;">
+                                    Plus GST</div>
+                            </label>
+                        </div>
+                    </div>
+
                     <div class="form-group" style="margin-bottom: 1.5rem;">
                         <label style="display: block; margin-bottom: 1rem; color: var(--gold);">Vehicle Type</label>
                         <div class="vehicle-selection"
@@ -531,27 +570,35 @@
         });
 
 
-        // Wedding package visibility toggle based on service type
+        // Wedding/Airport package visibility toggle based on service type
         const serviceDropdown = document.getElementById('service');
         const weddingPackageSection = document.getElementById('wedding-package-section');
+        const airportPackageSection = document.getElementById('airport-package-section');
 
-        if (serviceDropdown && weddingPackageSection) {
+        if (serviceDropdown) {
             serviceDropdown.addEventListener('change', function () {
+                // Clear all package sections first
+                weddingPackageSection.style.display = 'none';
+                airportPackageSection.style.display = 'none';
+
                 if (this.value === 'wedding') {
                     weddingPackageSection.style.display = 'block';
-                } else {
-                    weddingPackageSection.style.display = 'none';
-                    // Clear selection when hiding
-                    const selectedPackage = document.querySelector('input[name="wedding_package"]:checked');
-                    if (selectedPackage) {
-                        selectedPackage.checked = false;
-                        // Reset styling
-                        document.querySelectorAll('.package-option').forEach(opt => {
-                            opt.style.borderColor = 'rgba(255,255,255,0.1)';
-                            opt.style.backgroundColor = 'rgba(255,255,255,0.02)';
-                        });
-                    }
+                } else if (this.value === 'airport') {
+                    airportPackageSection.style.display = 'block';
                 }
+
+                // Clear both selections when changing service
+                const selectedWeddingPackage = document.querySelector('input[name="wedding_package"]:checked');
+                if (selectedWeddingPackage) selectedWeddingPackage.checked = false;
+
+                const selectedAirportPackage = document.querySelector('input[name="airport_package"]:checked');
+                if (selectedAirportPackage) selectedAirportPackage.checked = false;
+
+                // Reset all package styling
+                document.querySelectorAll('.package-option').forEach(opt => {
+                    opt.style.borderColor = 'rgba(255,255,255,0.1)';
+                    opt.style.backgroundColor = 'rgba(255,255,255,0.02)';
+                });
             });
         }
 
@@ -611,6 +658,7 @@
                 'return-date': document.getElementById('return-date').value,
                 'return-time': document.getElementById('return-time').value,
                 'wedding_package': document.querySelector('input[name="wedding_package"]:checked')?.value || '',
+                'airport_package': document.querySelector('input[name="airport_package"]:checked')?.value || '',
                 message: document.getElementById('message').value
             };
 
@@ -662,12 +710,13 @@
                         opt.style.borderColor = 'rgba(255,255,255,0.1)';
                         opt.style.backgroundColor = 'transparent';
                     });
-                    // Reset wedding package options
+                    // Reset wedding/airport package options
                     packageOptions.forEach(opt => {
                         opt.style.borderColor = 'rgba(255,255,255,0.1)';
                         opt.style.backgroundColor = 'rgba(255,255,255,0.02)';
                     });
                     weddingPackageSection.style.display = 'none';
+                    airportPackageSection.style.display = 'none';
                     returnTripDetails.style.display = 'none';
                     returnTripCheckbox.checked = false;
                 } else {
