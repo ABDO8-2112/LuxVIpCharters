@@ -3865,3 +3865,96 @@ body.has-top-bar .header {
         /* Slightly darker for better visibility on mobile */
     }
 }
+
+
+/* Wedding Packages Pricing Tables */
+.pricing-section {
+    margin-bottom: 2rem;
+}
+
+.pricing-table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 1rem;
+}
+
+.pricing-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.pricing-table thead tr {
+    background: linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.1) 100%);
+}
+
+.pricing-table th {
+    padding: 1rem 1.5rem;
+    text-align: left;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    color: var(--gold);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 0.9rem;
+    border-bottom: 2px solid var(--gold);
+}
+
+.pricing-table tbody tr {
+    transition: var(--transition);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pricing-table tbody tr:last-child {
+    border-bottom: none;
+}
+
+.pricing-table tbody tr:hover {
+    background: rgba(212, 175, 55, 0.05);
+}
+
+.pricing-table td {
+    padding: 1.2rem 1.5rem;
+    color: var(--text-primary);
+    font-size: 1rem;
+}
+
+.pricing-table td:first-child {
+    font-weight: 500;
+    color: var(--text-secondary);
+}
+
+.pricing-table td:not(:first-child) {
+    text-align: left;
+    font-weight: 600;
+    color: var(--gold);
+}
+
+/* Responsive Table */
+@media (max-width: 768px) {
+
+    .pricing-table th,
+    .pricing-table td {
+        padding: 0.8rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .pricing-table th {
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+
+    .pricing-table th,
+    .pricing-table td {
+        padding: 0.6rem 0.5rem;
+        font-size: 0.8rem;
+    }
+
+    .pricing-table th {
+        font-size: 0.7rem;
+    }
+}
