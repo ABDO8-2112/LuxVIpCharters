@@ -37,6 +37,7 @@ $luggage = clean($data['luggage'] ?? '');
 $returnTrip = !empty($data['return-trip']) || !empty($data['returnTrip']) || !empty($data['return_trip']);
 $returnDate = clean($data['return-date'] ?? ($data['returnDate'] ?? ($data['return_date'] ?? '')));
 $returnTime = clean($data['return-time'] ?? ($data['returnTime'] ?? ($data['return_time'] ?? '')));
+$weddingPackage = clean($data['wedding_package'] ?? '');
 $message = clean($data['message'] ?? '');
 
 if ($name === '' || $email === '' || $phone === '' || $pickup_location === '' || $dropoff_location === '' || $date === '' || $time === '' || $service === '' || $vehicle === '' || $passengers === '') {
@@ -77,6 +78,8 @@ $returnInfo = $returnTrip
     : "No";
 
 
+$weddingPackageInfo = ($service === 'wedding' && $weddingPackage !== '') ? "Wedding Package: $weddingPackage\n" : '';
+
 $body = "New Booking Request
 
 Customer Information:
@@ -90,7 +93,7 @@ Drop Off Location: $dropoff_location
 
 Booking Details:
 Service Type: $service
-Date: $prettyDate
+{$weddingPackageInfo}Date: $prettyDate
 Time: $prettyTime
 Vehicle: $vehicle
 Passengers: $passengers
