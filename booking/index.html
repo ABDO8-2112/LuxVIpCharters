@@ -42,7 +42,7 @@
                         <a href="/airport-transfers/">Airport Transfers</a>
                         <a href="/corporate-transfers/">Corporate Transfers</a>
                         <a href="/vip/">VVIP / Celebrity</a>
-                        <a href="/as-directed/">As Directed Services</a>
+                        <a href="/as-directed-hourly/">As Directed/Hourly Services</a>
                         <a href="/weddings/">Weddings</a>
                         <a href="/school-balls/">School Balls</a>
                         <a href="/wine-tours/">Wine Tours</a>
@@ -136,7 +136,7 @@
                         </div>
                     </div>
 
-                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <div id="service-type-section" class="form-group" style="margin-bottom: 1.5rem;">
                         <label for="service" style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Service
                             Type</label>
                         <select id="service" name="service" required
@@ -149,195 +149,88 @@
                             <option value="wine-tour">Wine Tour</option>
                             <option value="school-ball">School Balls</option>
                             <option value="events">Events</option>
-                            <option value="As Directed">As Directed</option>
+                            <option value="As Directed/Hourly">As Directed/Hourly</option>
                         </select>
                     </div>
 
-                    <!-- Wedding Package Selection (Hidden by default) -->
-                    <div id="wedding-package-section" class="form-group" style="display: none; margin-bottom: 1.5rem;">
-                        <label style="display: block; margin-bottom: 1rem; color: var(--gold);">Select Wedding
-                            Package</label>
+                    <!-- Wedding Vehicle & Package Selection (Hidden by default) -->
+                    <div id="wedding-package-section" class="form-group" style="display: none; margin-bottom: 2rem;">
+                        <label
+                            style="display: block; margin-bottom: 1.5rem; color: var(--gold); text-align: center; font-size: 1.2rem;">Select
+                            Your Wedding Vehicle & Package</label>
 
-                        <!-- Continuous Wedding Packages -->
-                        <h4
-                            style="color: var(--text-primary); font-size: 1rem; margin: 1.5rem 0 0.75rem; font-family: 'Cinzel', serif;">
-                            Continuous Wedding Packages</h4>
-                        <div class="wedding-package-grid"
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-                            <label class="package-option"
-                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
-                                <input type="radio" name="wedding_package" value="3 Hours - Continuous Package"
-                                    style="display: none;">
-                                <div
-                                    style="color: var(--gold); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">
-                                    3 Hours</div>
-                                <div style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;">
-                                    Continuous Package</div>
-                                <div style="color: var(--gold); font-size: 0.9rem; font-weight: 500;">from $490</div>
-                            </label>
-                            <label class="package-option"
-                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
-                                <input type="radio" name="wedding_package" value="4 Hours - Continuous Package"
-                                    style="display: none;">
-                                <div
-                                    style="color: var(--gold); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">
-                                    4 Hours</div>
-                                <div style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;">
-                                    Continuous Package</div>
-                                <div style="color: var(--gold); font-size: 0.9rem; font-weight: 500;">from $590</div>
-                            </label>
-                            <label class="package-option"
-                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
-                                <input type="radio" name="wedding_package" value="5 Hours - Continuous Package"
-                                    style="display: none;">
-                                <div
-                                    style="color: var(--gold); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">
-                                    5 Hours</div>
-                                <div style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;">
-                                    Continuous Package</div>
-                                <div style="color: var(--gold); font-size: 0.9rem; font-weight: 500;">from $690</div>
-                            </label>
-                        </div>
+                        <div class="wedding-selection-grid"
+                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem;">
+                            <!-- S-Class Column -->
+                            <div class="wedding-vehicle-col" data-vehicle="Mercedes S Class"
+                                style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1.5rem; transition: all 0.3s;">
+                                <img src="/images/desktop/Lux_Car_Perth_Hire_ (55).jpg" alt="Mercedes S Class"
+                                    style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                                <h4
+                                    style="color: var(--gold); text-align: center; font-family: 'Cinzel', serif; margin-bottom: 0.5rem;">
+                                    Mercedes S Class</h4>
+                                <p
+                                    style="color: var(--text-secondary); text-align: center; font-size: 0.85rem; margin-bottom: 1.5rem;">
+                                    Up to 3 Passengers</p>
 
-                        <!-- Bridal Party & Wedding Transfers -->
-                        <h4
-                            style="color: var(--text-primary); font-size: 1rem; margin: 1.5rem 0 0.75rem; font-family: 'Cinzel', serif;">
-                            Bridal Party & Wedding Transfers</h4>
-                        <div class="wedding-package-grid"
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-                            <label class="package-option"
-                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
-                                <input type="radio" name="wedding_package" value="Bridal Transfer"
-                                    style="display: none;">
-                                <div
-                                    style="color: var(--gold); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">
-                                    Bridal Transfer</div>
-                                <div style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;">
-                                    One-way service</div>
-                                <div style="color: var(--gold); font-size: 0.9rem; font-weight: 500;">from $200</div>
-                            </label>
-                            <label class="package-option"
-                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
-                                <input type="radio" name="wedding_package" value="Return (PM)" style="display: none;">
-                                <div
-                                    style="color: var(--gold); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">
-                                    Return (PM)</div>
-                                <div style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;">
-                                    Evening return service</div>
-                                <div style="color: var(--gold); font-size: 0.9rem; font-weight: 500;">from $249</div>
-                            </label>
-                            <label class="package-option"
-                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
-                                <input type="radio" name="wedding_package" value="Guest Transfer"
-                                    style="display: none;">
-                                <div
-                                    style="color: var(--gold); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">
-                                    Guest Transfer</div>
-                                <div style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;">
-                                    Guest transportation</div>
-                                <div style="color: var(--gold); font-size: 0.9rem; font-weight: 500;">from $159</div>
-                            </label>
-                        </div>
+                                <div class="package-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                    <!-- Packages will be injected here via JS -->
+                                </div>
+                            </div>
 
-                        <!-- Wedding Hire Options -->
-                        <h4
-                            style="color: var(--text-primary); font-size: 1rem; margin: 1.5rem 0 0.75rem; font-family: 'Cinzel', serif;">
-                            Wedding Hire Options</h4>
-                        <div class="wedding-package-grid"
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
-                            <label class="package-option"
-                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
-                                <input type="radio" name="wedding_package" value="Hourly Hire" style="display: none;">
-                                <div
-                                    style="color: var(--gold); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">
-                                    Hourly Hire</div>
-                                <div style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;">
-                                    Per hour booking</div>
-                                <div style="color: var(--gold); font-size: 0.9rem; font-weight: 500;">from $160</div>
-                            </label>
-                            <label class="package-option"
-                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
-                                <input type="radio" name="wedding_package" value="2 Hour Hire" style="display: none;">
-                                <div
-                                    style="color: var(--gold); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">
-                                    2 Hour Hire</div>
-                                <div style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;">
-                                    Two hour minimum</div>
-                                <div style="color: var(--gold); font-size: 0.9rem; font-weight: 500;">from $340</div>
-                            </label>
-                        </div>
+                            <!-- V-Class Column -->
+                            <div class="wedding-vehicle-col" data-vehicle="Mercedes V Class"
+                                style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1.5rem; transition: all 0.3s;">
+                                <img src="/images/desktop/Lux_Car_Perth_Hire_ (23).jpg" alt="Mercedes V Class"
+                                    style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                                <h4
+                                    style="color: var(--gold); text-align: center; font-family: 'Cinzel', serif; margin-bottom: 0.5rem;">
+                                    Mercedes V Class</h4>
+                                <p
+                                    style="color: var(--text-secondary); text-align: center; font-size: 0.85rem; margin-bottom: 1.5rem;">
+                                    Up to 6 Passengers</p>
 
-                        <!-- Ultimate Wedding Packages -->
-                        <h4
-                            style="color: var(--text-primary); font-size: 1rem; margin: 1.5rem 0 0.75rem; font-family: 'Cinzel', serif;">
-                            Ultimate Wedding Packages</h4>
-                        <div class="wedding-package-grid"
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 0.5rem;">
-                            <label class="package-option"
-                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
-                                <input type="radio" name="wedding_package" value="3hr + Return (PM)"
-                                    style="display: none;">
-                                <div
-                                    style="color: var(--gold); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">
-                                    3hr + Return (PM)</div>
-                                <div style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;">
-                                    Premium package</div>
-                                <div style="color: var(--gold); font-size: 0.9rem; font-weight: 500;">from $720</div>
-                            </label>
-                            <label class="package-option"
-                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
-                                <input type="radio" name="wedding_package" value="5hr + Return (PM)"
-                                    style="display: none;">
-                                <div
-                                    style="color: var(--gold); font-weight: 600; font-size: 1rem; margin-bottom: 0.5rem;">
-                                    5hr + Return (PM)</div>
-                                <div style="color: var(--text-secondary); font-size: 0.85rem; margin-bottom: 0.5rem;">
-                                    Deluxe package</div>
-                                <div style="color: var(--gold); font-size: 0.9rem; font-weight: 500;">from $890</div>
-                            </label>
+                                <div class="package-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                    <!-- Packages will be injected here via JS -->
+                                </div>
+                            </div>
+
+                            <!-- Sprinter Column -->
+                            <div class="wedding-vehicle-col" data-vehicle="Mercedes Sprinter"
+                                style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1.5rem; transition: all 0.3s;">
+                                <img src="/images/desktop/Lux_Car_Perth_Hire_ (49).png" alt="Mercedes Sprinter"
+                                    style="width: 100%; height: 150px; object-fit: cover; border-radius: 8px; margin-bottom: 1rem;">
+                                <h4
+                                    style="color: var(--gold); text-align: center; font-family: 'Cinzel', serif; margin-bottom: 0.5rem;">
+                                    Mercedes Sprinter</h4>
+                                <p
+                                    style="color: var(--text-secondary); text-align: center; font-size: 0.85rem; margin-bottom: 1.5rem;">
+                                    Up to 13 Passengers</p>
+
+                                <div class="package-list" style="display: flex; flex-direction: column; gap: 0.75rem;">
+                                    <!-- Packages will be injected here via JS -->
+                                </div>
+                            </div>
                         </div>
                     </div>
 
                     <!-- Airport Options (Hidden by default) -->
-                    <div id="airport-package-section" class="form-group" style="display: none; margin-bottom: 1.5rem;">
-                        <label style="display: block; margin-bottom: 1rem; color: var(--gold);">Select Airport
-                            Option</label>
-
-                        <div class="airport-package-grid"
-                            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; margin-bottom: 0.5rem;">
-                            <!-- Hourly Rate -->
-                            <label class="package-option airport-option"
-                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
-                                <input type="radio" name="airport_package"
-                                    value="Hourly Rate (V class $119, Sprinter $149)" style="display: none;">
-                                <div
-                                    style="color: var(--gold); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem; font-family: 'Cinzel', serif;">
-                                    Hourly Rate</div>
-                                <div style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">V
-                                    class $119 | Sprinter $149</div>
-                                <div
-                                    style="color: var(--gold); font-size: 0.8rem; font-weight: 400; font-style: italic;">
-                                    Plus GST</div>
-                            </label>
-
-                            <!-- Airport to City -->
-                            <label class="package-option airport-option"
-                                style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 8px; padding: 1.25rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.02);">
-                                <input type="radio" name="airport_package"
-                                    value="Airport to City (V class $159, Sprinter $209)" style="display: none;">
-                                <div
-                                    style="color: var(--gold); font-weight: 600; font-size: 1.1rem; margin-bottom: 0.5rem; font-family: 'Cinzel', serif;">
-                                    Airport to City</div>
-                                <div style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 0.5rem;">V
-                                    class $159 | Sprinter $209</div>
-                                <div
-                                    style="color: var(--gold); font-size: 0.8rem; font-weight: 400; font-style: italic;">
-                                    Plus GST</div>
-                            </label>
-                        </div>
+                    <div id="airport-package-section" class="form-group" style="display: none; margin-bottom: 2rem;">
+                        <label for="airport_package"
+                            style="display: block; margin-bottom: 0.5rem; color: var(--gold);">Airport to City</label>
+                        <select id="airport_package_select" name="airport_package"
+                            style="width: 100%; padding: 12px; background-color: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); color: #fff; border-radius: 5px;">
+                            <option value="">Select Vehicle Type</option>
+                            <option value="Airport to City - S Class: $149">S Class: $149</option>
+                            <option value="Airport to City - V Class: $159">V Class: $159</option>
+                            <option value="Airport to City - Sprinter: $209">Sprinter: $209</option>
+                        </select>
+                        <div
+                            style="color: var(--gold); font-size: 0.85rem; font-weight: 500; font-style: italic; margin-top: 0.5rem;">
+                            Plus GST</div>
                     </div>
 
-                    <div class="form-group" style="margin-bottom: 1.5rem;">
+                    <div id="standard-vehicle-selection" class="form-group" style="margin-bottom: 1.5rem;">
                         <label style="display: block; margin-bottom: 1rem; color: var(--gold);">Vehicle Type</label>
                         <div class="vehicle-selection"
                             style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
@@ -576,12 +469,57 @@
         const serviceDropdown = document.getElementById('service');
         const weddingPackageSection = document.getElementById('wedding-package-section');
         const airportPackageSection = document.getElementById('airport-package-section');
+        const standardVehicleSelection = document.getElementById('standard-vehicle-selection');
+
+        const weddingPackagesData = {
+            'Mercedes S Class': [
+                { name: '3 Hours', category: 'Continuous', price: '$490' },
+                { name: '4 Hours', category: 'Continuous', price: '$590' },
+                { name: '5 Hours', category: 'Continuous', price: '$690' },
+                { name: 'Bridal Transfer', category: 'Transfer', price: '$200' },
+                { name: 'Return (PM)', category: 'Transfer', price: '$249' },
+                { name: 'Guest Transfer', category: 'Transfer', price: '$159' },
+                { name: 'Hourly Hire', category: 'Hire', price: '$160' },
+                { name: '2 Hour Hire', category: 'Hire', price: '$340' },
+                { name: '3hr + Return (PM)', category: 'Ultimate', price: '$720' },
+                { name: '5hr + Return (PM)', category: 'Ultimate', price: '$890' }
+            ],
+            'Mercedes V Class': [
+                { name: '3 Hours', category: 'Continuous', price: '$590' },
+                { name: '4 Hours', category: 'Continuous', price: '$740' },
+                { name: '5 Hours', category: 'Continuous', price: '$890' },
+                { name: 'Bridal Transfer', category: 'Transfer', price: '$260' },
+                { name: 'Return (PM)', category: 'Transfer', price: '$290' },
+                { name: 'Guest Transfer', category: 'Transfer', price: '$199' },
+                { name: 'Hourly Hire', category: 'Hire', price: '$250' },
+                { name: '2 Hour Hire', category: 'Hire', price: '$440' },
+                { name: '3hr + Return (PM)', category: 'Ultimate', price: '$890' },
+                { name: '5hr + Return (PM)', category: 'Ultimate', price: '$1,090' }
+            ],
+            'Mercedes Sprinter': [
+                { name: '3 Hours', category: 'Continuous', price: '$890' },
+                { name: '4 Hours', category: 'Continuous', price: '$990' },
+                { name: '5 Hours', category: 'Continuous', price: '$1,090' },
+                { name: 'Bridal Transfer', category: 'Transfer', price: '$360' },
+                { name: 'Return (PM)', category: 'Transfer', price: '$390' },
+                { name: 'Guest Transfer', category: 'Transfer', price: '$299' },
+                { name: 'Hourly Hire', category: 'Hire', price: '$350' },
+                { name: '2 Hour Hire', category: 'Hire', price: '$590' },
+                { name: '3hr + Return (PM)', category: 'Ultimate', price: '$1,190' },
+                { name: '5hr + Return (PM)', category: 'Ultimate', price: '$1,390' }
+            ]
+        };
 
         if (serviceDropdown) {
             serviceDropdown.addEventListener('change', function () {
                 // Clear all package sections first
                 weddingPackageSection.style.display = 'none';
                 airportPackageSection.style.display = 'none';
+                standardVehicleSelection.style.display = 'block';
+
+                if (this.value === 'wedding' || this.value === 'airport') {
+                    standardVehicleSelection.style.display = 'none';
+                }
 
                 if (this.value === 'wedding') {
                     weddingPackageSection.style.display = 'block';
@@ -593,8 +531,8 @@
                 const selectedWeddingPackage = document.querySelector('input[name="wedding_package"]:checked');
                 if (selectedWeddingPackage) selectedWeddingPackage.checked = false;
 
-                const selectedAirportPackage = document.querySelector('input[name="airport_package"]:checked');
-                if (selectedAirportPackage) selectedAirportPackage.checked = false;
+                const airportPackageSelect = document.getElementById('airport_package_select');
+                if (airportPackageSelect) airportPackageSelect.value = '';
 
                 // Reset all package styling
                 document.querySelectorAll('.package-option').forEach(opt => {
@@ -604,8 +542,70 @@
             });
         }
 
-        // Wedding package selection styling
-        const packageOptions = document.querySelectorAll('.package-option');
+        // Wedding Vehicle Selection & Dynamic Package Injection
+        function injectWeddingPackages() {
+            const columns = document.querySelectorAll('.wedding-vehicle-col');
+            columns.forEach(col => {
+                const vehicleName = col.getAttribute('data-vehicle');
+                const list = col.querySelector('.package-list');
+                const packages = weddingPackagesData[vehicleName];
+
+                list.innerHTML = '';
+                packages.forEach(pkg => {
+                    const label = document.createElement('label');
+                    label.className = 'package-option wedding-pkg-option';
+                    label.style.cssText = 'cursor: pointer; border: 1px solid rgba(255,255,255,0.1); border-radius: 5px; padding: 0.75rem; text-align: center; transition: all 0.3s; background: rgba(255,255,255,0.01); display: flex; flex-direction: column; gap: 0.2rem;';
+
+                    label.innerHTML = `
+                        <input type="radio" name="wedding_package" value="${vehicleName}: ${pkg.name} - ${pkg.price}" style="display: none;">
+                        <div style="color: #fff; font-weight: 500; font-size: 0.9rem;">${pkg.name}</div>
+                        <div style="color: var(--gold); font-size: 0.95rem; font-weight: 600;">${pkg.price}</div>
+                    `;
+
+                    label.addEventListener('click', function () {
+                        // Reset all wedding package highlights
+                        document.querySelectorAll('.wedding-pkg-option').forEach(opt => {
+                            opt.style.borderColor = 'rgba(255,255,255,0.1)';
+                            opt.style.backgroundColor = 'rgba(255,255,255,0.01)';
+                        });
+                        // Reset all vehicle column borders
+                        document.querySelectorAll('.wedding-vehicle-col').forEach(c => {
+                            c.style.borderColor = 'rgba(255,255,255,0.1)';
+                        });
+
+                        // Highlight selected package and its parent vehicle column
+                        this.style.borderColor = 'var(--gold)';
+                        this.style.backgroundColor = 'rgba(212, 175, 55, 0.1)';
+                        col.style.borderColor = 'var(--gold)';
+
+                        this.querySelector('input').checked = true;
+
+                        // Sync with hidden standard vehicle radio
+                        const standardRadio = document.querySelector(`input[name="vehicle"][value="${vehicleName}"]`);
+                        if (standardRadio) {
+                            standardRadio.checked = true;
+                            document.querySelectorAll('.vehicle-option').forEach(opt => {
+                                opt.style.borderColor = 'rgba(255,255,255,0.1)';
+                                opt.style.backgroundColor = 'transparent';
+                            });
+                            const standardOption = standardRadio.closest('.vehicle-option');
+                            if (standardOption) {
+                                standardOption.style.borderColor = 'var(--gold)';
+                                standardOption.style.backgroundColor = 'rgba(255, 196, 0, 0.1)';
+                            }
+                        }
+                    });
+
+                    list.appendChild(label);
+                });
+            });
+        }
+
+        // Initialize injection
+        injectWeddingPackages();
+
+        // Wedding package selection styling (for non-dynamic ones if any left or for airport)
+        const packageOptions = document.querySelectorAll('.package-option:not(.wedding-pkg-option)');
         packageOptions.forEach(option => {
             const radio = option.querySelector('input[type="radio"]');
 
@@ -660,7 +660,7 @@
                 'return-date': document.getElementById('return-date').value,
                 'return-time': document.getElementById('return-time').value,
                 'wedding_package': document.querySelector('input[name="wedding_package"]:checked')?.value || '',
-                'airport_package': document.querySelector('input[name="airport_package"]:checked')?.value || '',
+                'airport_package': document.getElementById('airport_package_select')?.value || '',
                 message: document.getElementById('message').value
             };
 
@@ -708,19 +708,30 @@
 
                     showToast(data.message || 'Thank you! Your booking request has been sent.', 'success');
                     e.target.reset();
+
+                    // Reset standard vehicle selection highlight
                     vehicleOptions.forEach(opt => {
                         opt.style.borderColor = 'rgba(255,255,255,0.1)';
                         opt.style.backgroundColor = 'transparent';
                     });
-                    // Reset wedding/airport package options
-                    packageOptions.forEach(opt => {
+
+                    // Reset wedding vehicle selection highlight
+                    document.querySelectorAll('.wedding-vehicle-col').forEach(opt => {
                         opt.style.borderColor = 'rgba(255,255,255,0.1)';
                         opt.style.backgroundColor = 'rgba(255,255,255,0.02)';
                     });
+                    document.querySelectorAll('.wedding-pkg-option').forEach(opt => {
+                        opt.style.borderColor = 'rgba(255,255,255,0.1)';
+                        opt.style.backgroundColor = 'rgba(255,255,255,0.01)';
+                    });
+
+                    // Hide conditional sections
                     weddingPackageSection.style.display = 'none';
                     airportPackageSection.style.display = 'none';
                     returnTripDetails.style.display = 'none';
                     returnTripCheckbox.checked = false;
+                    standardVehicleSelection.style.display = 'block';
+
                 } else {
                     showToast(data.message || 'Failed to submit booking. Please try again.', 'error');
                 }
