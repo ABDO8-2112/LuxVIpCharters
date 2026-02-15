@@ -26,6 +26,29 @@
 
     <!-- Font Awesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .selection-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+        }
+
+        @media (max-width: 768px) {
+            .selection-grid {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+
+            .booking-form-container {
+                padding: 1.5rem !important;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -159,8 +182,7 @@
                             style="display: block; margin-bottom: 1.5rem; color: var(--gold); text-align: center; font-size: 1.2rem;">Select
                             Your Wedding Vehicle & Package</label>
 
-                        <div class="wedding-selection-grid"
-                            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                        <div class="wedding-selection-grid selection-grid" style="gap: 1rem;">
                             <!-- S-Class Column -->
                             <div class="wedding-vehicle-col" data-vehicle="Mercedes S Class"
                                 style="background: rgba(255,255,255,0.02); border: 1px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1rem; transition: all 0.3s;">
@@ -217,8 +239,7 @@
                             style="display: block; margin-bottom: 1.5rem; color: var(--gold); text-align: center; font-size: 1.2rem;">Select
                             Your Airport Vehicle (To City)</label>
 
-                        <div class="airport-selection-grid"
-                            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                        <div class="airport-selection-grid selection-grid">
                             <!-- S-Class -->
                             <div class="airport-vehicle-option" data-vehicle="Mercedes S Class" data-price="$149"
                                 style="cursor: pointer; background: rgba(255,255,255,0.02); border: 2px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1.5rem; text-align: center; transition: all 0.3s;">
@@ -270,8 +291,7 @@
                             style="display: block; margin-bottom: 1.5rem; color: var(--gold); text-align: center; font-size: 1.2rem;">Select
                             Your Hourly Vehicle (As Directed)</label>
 
-                        <div class="as-directed-selection-grid"
-                            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;">
+                        <div class="as-directed-selection-grid selection-grid">
                             <!-- S-Class -->
                             <div class="as-directed-vehicle-option" data-vehicle="Mercedes S Class" data-price="$109"
                                 style="cursor: pointer; background: rgba(255,255,255,0.02); border: 2px solid rgba(255,255,255,0.1); border-radius: 10px; padding: 1.5rem; text-align: center; transition: all 0.3s;">
@@ -318,8 +338,7 @@
 
                     <div id="standard-vehicle-selection" class="form-group" style="margin-bottom: 1.5rem;">
                         <label style="display: block; margin-bottom: 1rem; color: var(--gold);">Vehicle Type</label>
-                        <div class="vehicle-selection"
-                            style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem;">
+                        <div class="vehicle-selection selection-grid" style="gap: 1rem;">
                             <label class="vehicle-option"
                                 style="cursor: pointer; border: 2px solid rgba(255,255,255,0.1); border-radius: 5px; padding: 1rem; text-align: center; transition: all 0.3s;">
                                 <input type="radio" name="vehicle" value="Mercedes V Class" required
