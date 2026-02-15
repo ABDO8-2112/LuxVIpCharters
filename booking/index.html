@@ -967,6 +967,10 @@
 
                 if (!input || !list) return;
 
+                function cleanAddress(addr) {
+                    return addr.replace(/,\s*Australia$/i, '');
+                }
+
                 input.addEventListener('input', function (e) {
                     const val = this.value;
 
@@ -985,11 +989,11 @@
                                 if (data.length === 0) return;
 
                                 data.forEach(item => {
+                                    const cleanedAddr = cleanAddress(item.display_name);
                                     const div = document.createElement('div');
-                                    // Make the matching part bold (simple approach)
-                                    div.innerHTML = item.display_name;
+                                    div.innerHTML = cleanedAddr;
                                     div.addEventListener('click', function () {
-                                        input.value = item.display_name;
+                                        input.value = cleanedAddr;
                                         list.innerHTML = '';
                                     });
                                     list.appendChild(div);
